@@ -1,0 +1,17 @@
+{
+  "Name": "Firebird",
+  "equipmentName": [
+    "Light Auto Cannon",
+    "LRM",
+    "LRM",
+    "LRM",
+    "LRM"
+  ],
+  "armour": 5,
+  "armourMax": 5,
+  "upkeepCost": 120000,
+  "speed": 45,
+  "sensorRange": 30,
+  "visionRangs": 24,
+  "purchaseCost": 540000
+}

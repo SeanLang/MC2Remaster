@@ -1,0 +1,42 @@
+{
+  "equipmentSlot": [
+    "6,2",
+    "1,2",
+    "7,2",
+    "0,2",
+    "5,3",
+    "4,7",
+    "2,2",
+    "6,4",
+    "6,5",
+    "5,5",
+    "4,5",
+    "1,4",
+    "1,5",
+    "2,5",
+    "3,5"
+  ],
+  "equipmentName": [
+    "Large Laser",
+    "Large Laser",
+    "Medium Laser",
+    "Medium Laser",
+    "Medium Laser",
+    "Machine Gun",
+    "Machine Gun",
+    "LRM",
+    "LRM",
+    "LRM",
+    "LRM",
+    "LRM",
+    "LRM",
+    "LRM",
+    "LRM"
+  ],
+  "armour": 0,
+  "maxArmour": 0,
+  "heat": 0,
+  "maxHeat": 0,
+  "speed": 0,
+  "sensorRange": 0
+}

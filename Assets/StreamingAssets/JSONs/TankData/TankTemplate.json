@@ -1,0 +1,15 @@
+{
+  "Name": "Rommel",
+  "equipmentName": [
+    "Heavy Auto Cannon",
+    "LRM",
+    "Small Laser"
+  ],
+  "armour": 12,
+  "maxArmour": 12,
+  "upkeepCost": 60000,
+  "speed": 5,
+  "sensorRange": 4,
+  "visionRangs": 3,
+  "purchaseCost": 1000000
+}

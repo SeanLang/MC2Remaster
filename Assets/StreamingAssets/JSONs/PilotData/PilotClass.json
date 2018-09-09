@@ -1,0 +1,8 @@
+{
+  "Name": "Bob Bobson",
+  "Level": 1,
+  "Health": 3,
+  "upkeepCost": 12000,
+  "purchaseCost": 45000,
+  "XP": 100
+}
