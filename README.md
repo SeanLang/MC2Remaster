@@ -1,3 +1,1 @@
-# MC2Remaster
-
 Test
