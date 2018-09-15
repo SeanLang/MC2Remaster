@@ -1,0 +1,16 @@
+{
+  "unitName": "",
+  "iconFileName": "",
+  "equipmentSlot": [],
+  "equipmentName": [],
+  "weight": 0,
+  "armour": 0,
+  "maxArmour": 0,
+  "heat": 0,
+  "maxHeat": 0,
+  "speed": 0,
+  "sensorRange": 0,
+  "visionRangs": 0,
+  "upkeepCost": 0,
+  "purchaseCost": 0
+}

@@ -1,0 +1,8 @@
+{
+  "Name": "Large Laser",
+  "damageType": "Energy",
+  "heat": 8,
+  "range": 500,
+  "damage": 8,
+  "purchaseCost": 300000
+}
