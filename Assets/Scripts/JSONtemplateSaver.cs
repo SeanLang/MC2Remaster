@@ -28,6 +28,7 @@ public class JSONtemplateSaver : MonoBehaviour {
     public MissionClass missionTemplate;
     public string campaignTemplateName;
     public CampaignClass campaignTemplate;
+    public CampaignListClass campaignList;
 
     void Start () {
 
@@ -91,6 +92,12 @@ public class JSONtemplateSaver : MonoBehaviour {
         File.WriteAllText(filePath, jsonAsData);
         #endregion
         print("campaign");
+
+        jsonAsData = JsonConvert.SerializeObject(campaignList, Formatting.Indented);
+        filePath = Application.streamingAssetsPath + "/JSONs/CampaignData/campaignList.json";
+        File.WriteAllText(filePath, jsonAsData);
+
+
     }
 
 

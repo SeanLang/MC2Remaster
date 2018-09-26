@@ -1,0 +1,17 @@
+{
+  "campaignName": "Campaign 2",
+  "campaignDescription": "Description 2",
+  "startingMechs": [
+    "Atlas",
+    "Catapault",
+    "Hunchback",
+    "Jenner"
+  ],
+  "missionList": [
+    "Campaign 2 Mission 1",
+    "Campaign 2 Mission 2",
+    "Campaign 2 Mission 3",
+    "Campaign 2 Mission 4"
+  ],
+  "startingMoney": 100000
+}

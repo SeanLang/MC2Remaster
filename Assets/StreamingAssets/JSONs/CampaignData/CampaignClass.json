@@ -1,3 +1,17 @@
 {
-  "campaignName": "Test Campaign"
+  "campaignName": "Test Campaign",
+  "campaignDescription": "",
+  "startingMechs": [
+    "Atlas",
+    "Catapault",
+    "Hunchback",
+    "Jenner"
+  ],
+  "missionList": [
+    "Campaign 1 Mission 1",
+    "Campaign 1 Mission 2",
+    "Campaign 1 Mission 3",
+    "Campaign 1 Mission 4"
+  ],
+  "startingMoney": 100000
 }
