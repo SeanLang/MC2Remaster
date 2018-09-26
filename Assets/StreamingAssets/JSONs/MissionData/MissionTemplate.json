@@ -1,3 +1,12 @@
 {
-  "sceneName": "Test Mission"
+  "sceneName": "Test Mission",
+  "missionDescription": "",
+  "missionReward": 0,
+  "unitPurchaseList": [],
+  "pilotPurchaseList": [],
+  "nextMissionsList": [],
+  "missionIconLocation": {
+    "x": 0.0,
+    "y": 0.0
+  }
 }

@@ -1,0 +1,16 @@
+{
+  "sceneName": "Campaign 1 Mission 1",
+  "missionDescription": "Campaign 1 Mission 1 Description",
+  "missionReward": 0,
+  "unitPurchaseList": [
+    "Atlas",
+    "Catapault",
+    "Hunchback",
+    "Jenner"],
+  "pilotPurchaseList": [],
+  "nextMissionsList": [],
+  "missionIconLocation": {
+    "x": 120.0,
+    "y": 30.0
+  }
+}

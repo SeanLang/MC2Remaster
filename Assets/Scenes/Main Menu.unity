@@ -795,7 +795,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Mission Selection
+          m_StringArgument: Campaign Selection
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1467,16 +1467,18 @@ MonoBehaviour:
   buyableVTOLList: []
   buyablePilotList: []
   buyabelWeaponList: []
-  TankList: []
-  MechList: []
-  InfantryList: []
-  VTOLList: []
-  aerospaceList: []
-  dropShipList: []
-  pilotList: []
-  weaponList: []
-  campaignList: []
+  campaignList:
+  - 
+  DeploymentList: []
   missionList: []
+  ownedTankList: []
+  ownedMechList: []
+  ownedInfantryList: []
+  ownedVTOLList: []
+  ownedAerospaceList: []
+  ownedDropShipList: []
+  ownedPilotList: []
+  weaponList: []
 --- !u!4 &1619917137
 Transform:
   m_ObjectHideFlags: 0
@@ -1496,7 +1498,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1619917135}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5211c66823ed4684cb3c17de9c3c21b4, type: 3}
   m_Name: 
@@ -1527,7 +1529,8 @@ MonoBehaviour:
     purchaseCost: 0
   tankTemplateName: TankTemplate
   tankTemplate:
-    Name: Rommel
+    unitName: 
+    iconFileName: 
     equipmentName:
     - Heavy Auto Cannon
     - LRM
@@ -1536,27 +1539,32 @@ MonoBehaviour:
     maxArmour: 12
     upkeepCost: 60000
     speed: 5
+    weight: 0
     sensorRange: 4
     visionRangs: 3
     purchaseCost: 1000000
   infantryTemplateName: InfantryTemplate
   infantryTemplate:
     infantryWeaponName: Laser Rifle
-    Name: Laser Infantry
+    unitName: 
+    iconFileName: 
     infantryUnitSize: 30
     upkeepCost: 30000
     speed: 2
+    weight: 0
     sensorRange: 5
     visionRangs: 4
     purchaseCost: 80000
   VTOLTemplateName: CTOLTemplate
   VTOLTemplate:
-    Name: Warrior
+    unitName: 
+    iconFileName: 
     equipmentName: []
     armour: 4
     maxArmour: 4
     upkeepCost: 30000
     speed: 15
+    weight: 0
     sensorRange: 13
     visionRangs: 12
     purchaseCost: 150000
@@ -1625,9 +1633,28 @@ MonoBehaviour:
   missionTemplateName: MissionTemplate
   missionTemplate:
     sceneName: Test Mission
+    missionReward: 0
+    unitPurchaseList: []
+    pilotPurchaseList: []
   campaignTemplateName: CampaignTemplate
   campaignTemplate:
     campaignName: Test Campaign
+    campaignDescription: 
+    startingMechs:
+    - Atlas
+    - Catapault
+    - Hunchback
+    - Jenner
+    missionList:
+    - Campaign 1 Mission 1
+    - Campaign 1 Mission 2
+    - Campaign 1 Mission 3
+    - Campaign 1 Mission 4
+    startingMoney: 100000
+  campaignList:
+    campaignList:
+    - Campaign 1
+    - Campaign 2
 --- !u!1001 &1706109570
 Prefab:
   m_ObjectHideFlags: 0

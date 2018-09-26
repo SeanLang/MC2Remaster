@@ -1,5 +1,6 @@
 {
-  "Name": "Rommel",
+  "unitName": "",
+  "iconFileName": "",
   "equipmentName": [
     "Heavy Auto Cannon",
     "LRM",
@@ -9,6 +10,7 @@
   "maxArmour": 12,
   "upkeepCost": 60000,
   "speed": 5,
+  "weight": 0,
   "sensorRange": 4,
   "visionRangs": 3,
   "purchaseCost": 1000000

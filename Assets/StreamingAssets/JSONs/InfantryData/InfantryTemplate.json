@@ -1,9 +1,11 @@
 {
   "infantryWeaponName": "Laser Rifle",
-  "Name": "Laser Infantry",
+  "unitName": "",
+  "iconFileName": "",
   "infantryUnitSize": 30,
   "upkeepCost": 30000,
   "speed": 2,
+  "weight": 0,
   "sensorRange": 5,
   "visionRangs": 4,
   "purchaseCost": 80000

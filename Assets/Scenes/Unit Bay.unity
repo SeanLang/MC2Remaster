@@ -188,7 +188,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 788406979}
   m_HandleRect: {fileID: 788406978}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -375,8 +375,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 753514163}
   m_HandleRect: {fileID: 753514162}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.90000015
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1203075774}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
@@ -1201,7 +1201,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1095853103}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
@@ -1576,8 +1576,8 @@ RectTransform:
   m_Father: {fileID: 2135296988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.9999999}
+  m_AnchorMin: {x: 0, y: 0.099999845}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1903,8 +1903,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1883145014}
   m_HandleRect: {fileID: 1883145013}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2021,7 +2021,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1203075774}
+      - m_Target: {fileID: 0}
         m_MethodName: TransferUnit
         m_Mode: 1
         m_Arguments:
@@ -2221,7 +2221,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1203075774}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
@@ -2232,7 +2232,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1095853103}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
@@ -2507,8 +2507,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1095853101}
-  - component: {fileID: 1095853103}
   - component: {fileID: 1095853102}
+  - component: {fileID: 1095853103}
+  - component: {fileID: 1095853105}
+  - component: {fileID: 1095853104}
   m_Layer: 5
   m_Name: DeploymentContent
   m_TagString: Untagged
@@ -2532,7 +2534,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1095853102
 MonoBehaviour:
@@ -2542,21 +2544,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1095853100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
+    m_Left: 0
     m_Right: 0
     m_Top: 5
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 246, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 3
+    m_Bottom: 5
+  m_ChildAlignment: 1
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
 --- !u!114 &1095853103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2565,7 +2566,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1095853100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c68752cf68a8ff428e190b88df97d35, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b002b12f49d5b458081f7c7792d55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pilots: []
@@ -2573,10 +2574,50 @@ MonoBehaviour:
   tanks: []
   infantry: []
   VTOLs: []
-  unitDeploymentPanel: {fileID: 1603931493691304, guid: 05e1decb90c5cbf449d2e87e5f718d8a,
-    type: 2}
+  otherPanel: {fileID: 1203075771}
   selectedIcon: {fileID: 0}
-  inventoryPanel: {fileID: 1203075771}
+  unitPanel: {fileID: 1302064182862802, guid: ddc9bb99d091d7f46ad363bb93276ded, type: 2}
+  canvasTopLayer: {fileID: 1185783050}
+  isStoreScreen: 0
+  isStore: 0
+  isInventory: 0
+  isDeployment: 1
+  dropPosition: {x: 0, y: 0, z: 0}
+  maxPanelsOnScreen: 4
+--- !u!114 &1095853104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1095853100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1095853105
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1095853100}
+  m_CullTransparentMesh: 0
 --- !u!1 &1131725023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,7 +2832,7 @@ Canvas:
   m_GameObject: {fileID: 1185783050}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1350262258}
   m_PlaneDistance: 5
   m_PixelPerfect: 0
@@ -2842,8 +2883,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1203075772}
-  - component: {fileID: 1203075774}
   - component: {fileID: 1203075773}
+  - component: {fileID: 1203075774}
+  - component: {fileID: 1203075776}
+  - component: {fileID: 1203075775}
   m_Layer: 5
   m_Name: InventoryContent
   m_TagString: Untagged
@@ -2866,8 +2909,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030481582}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1203075773
 MonoBehaviour:
@@ -2887,8 +2930,8 @@ MonoBehaviour:
     m_Bottom: 5
   m_ChildAlignment: 1
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
 --- !u!114 &1203075774
@@ -2899,7 +2942,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1203075771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e4ef4a2c44f674c8d0faff58299570, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b002b12f49d5b458081f7c7792d55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pilots: []
@@ -2907,10 +2950,50 @@ MonoBehaviour:
   tanks: []
   infantry: []
   VTOLs: []
-  unitPurchasePanel: {fileID: 1302064182862802, guid: ddc9bb99d091d7f46ad363bb93276ded,
-    type: 2}
+  otherPanel: {fileID: 1095853100}
   selectedIcon: {fileID: 0}
-  deploymentPanel: {fileID: 1095853100}
+  unitPanel: {fileID: 1302064182862802, guid: ddc9bb99d091d7f46ad363bb93276ded, type: 2}
+  canvasTopLayer: {fileID: 1185783050}
+  isStoreScreen: 0
+  isStore: 0
+  isInventory: 1
+  isDeployment: 0
+  dropPosition: {x: 0, y: 0, z: 0}
+  maxPanelsOnScreen: 4
+--- !u!114 &1203075775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1203075771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1203075776
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1203075771}
+  m_CullTransparentMesh: 0
 --- !u!1 &1272749949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,226 +3326,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1367401394
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1367401397}
-  - component: {fileID: 1367401396}
-  - component: {fileID: 1367401395}
-  m_Layer: 0
-  m_Name: GameController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1367401395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1367401394}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5211c66823ed4684cb3c17de9c3c21b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponTemplateName: WeaponTemplate
-  weaponTemplate:
-    Name: Large Laser
-    damageType: Energy
-    heat: 8
-    range: 500
-    damage: 8
-    purchaseCost: 300000
-  mechTemplateName: MechTemplate
-  mechTemplate:
-    unitName: 
-    iconFileName: 
-    equipmentSlot: []
-    equipmentName: []
-    weight: 0
-    armour: 0
-    maxArmour: 0
-    heat: 0
-    maxHeat: 0
-    speed: 0
-    sensorRange: 0
-    visionRangs: 0
-    upkeepCost: 0
-    purchaseCost: 0
-  tankTemplateName: TankTemplate
-  tankTemplate:
-    unitName: 
-    iconFileName: 
-    equipmentName:
-    - Heavy Auto Cannon
-    - LRM
-    - Small Laser
-    armour: 12
-    maxArmour: 12
-    upkeepCost: 60000
-    speed: 5
-    weight: 0
-    sensorRange: 4
-    visionRangs: 3
-    purchaseCost: 1000000
-  infantryTemplateName: InfantryTemplate
-  infantryTemplate:
-    infantryWeaponName: Laser Rifle
-    unitName: 
-    iconFileName: 
-    infantryUnitSize: 30
-    upkeepCost: 30000
-    speed: 2
-    weight: 0
-    sensorRange: 5
-    visionRangs: 4
-    purchaseCost: 80000
-  VTOLTemplateName: CTOLTemplate
-  VTOLTemplate:
-    unitName: 
-    iconFileName: 
-    equipmentName: []
-    armour: 4
-    maxArmour: 4
-    upkeepCost: 30000
-    speed: 15
-    weight: 0
-    sensorRange: 13
-    visionRangs: 12
-    purchaseCost: 150000
-  aerospaceTemplateName: AerospaceTemplate
-  aerospaceTemplate:
-    Name: Firebird
-    equipmentName:
-    - Light Auto Cannon
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    armour: 5
-    armourMax: 5
-    upkeepCost: 120000
-    speed: 45
-    sensorRange: 30
-    visionRangs: 24
-    purchaseCost: 540000
-  dropShipTemplateName: DropShipTemplate
-  dropShipTemplate:
-    Name: Leopard
-    equipmentName:
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    - PPC
-    - PPC
-    - Large Laser
-    - Large Laser
-    - Large Laser
-    - Large Laser
-    - Large Laser
-    - Medium Laser
-    - Medium Laser
-    - Medium Laser
-    - Medium Laser
-    - Medium Laser
-    - Medium Laser
-    - Medium Laser
-    armour: 24
-    maxArmour: 24
-    carryCapacity: 4
-    upkeepCost: 500000
-    speed: 120
-    sensorRange: 30
-    visionRangs: 16
-    purchaseCost: 16000000
-  pilotTemplateName: PilotTemplate
-  pilotTemplate:
-    Name: Bob Bobson
-    Level: 1
-    Health: 3
-    upkeepCost: 12000
-    purchaseCost: 45000
-    XP: 100
-  missionTemplateName: MissionTemplate
-  missionTemplate:
-    sceneName: Test Mission
-  campaignTemplateName: CampaignTemplate
-  campaignTemplate:
-    campaignName: Test Campaign
---- !u!114 &1367401396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1367401394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cd85202050a144f81f8dffe83c771f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: 0
-  missionName: 
-  campaignName: 
-  saveName: 
-  pilots: []
-  mechs: []
-  tanks: []
-  infantry: []
-  VTOLs: []
-  aerospace: []
-  dropShips: []
-  missions: []
-  campaigns: []
-  weapons: []
-  buyableTankList: []
-  buyableMechList:
-  - Atlas
-  - Catapault
-  - Hunchback
-  - Jenner
-  buyableInfantryList: []
-  buyableVTOLList: []
-  buyablePilotList: []
-  buyabelWeaponList: []
-  TankList: []
-  MechList: []
-  InfantryList: []
-  VTOLList: []
-  aerospaceList: []
-  dropShipList: []
-  pilotList: []
-  weaponList: []
-  campaignList: []
-  missionList: []
-  DeploymentList: []
---- !u!4 &1367401397
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1367401394}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 116.9191, y: 2.407627, z: 140.17921}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1512791643
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,7 +3393,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LOGISTICS
+  m_Text: UNIT BAY
 --- !u!222 &1512791646
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3605,7 +3468,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next
+  m_Text: Deploy
 --- !u!222 &1676348170
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3694,7 +3557,7 @@ GameObject:
   - component: {fileID: 1727638873}
   - component: {fileID: 1727638872}
   m_Layer: 5
-  m_Name: Next Button
+  m_Name: Deploy Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3766,7 +3629,29 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main Menu
+          m_StringArgument: Unit Bay
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1203075774}
+        m_MethodName: AssignLists
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1095853103}
+        m_MethodName: AssignLists
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4121,7 +4006,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1203075774}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
@@ -4132,7 +4017,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1095853103}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
@@ -4434,8 +4319,8 @@ RectTransform:
   m_Father: {fileID: 1131725024}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.9999999}
+  m_AnchorMin: {x: 0, y: 0.100000024}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5220,7 +5105,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1095853103}
+      - m_Target: {fileID: 0}
         m_MethodName: TransferUnit
         m_Mode: 1
         m_Arguments:
@@ -5343,7 +5228,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1203075774}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
@@ -5354,7 +5239,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1095853103}
+      - m_Target: {fileID: 0}
         m_MethodName: SetWindow
         m_Mode: 3
         m_Arguments:
