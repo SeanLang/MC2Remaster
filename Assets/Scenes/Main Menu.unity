@@ -1447,6 +1447,17 @@ MonoBehaviour:
   missionName: 
   campaignName: 
   saveName: 
+  activeMission:
+    sceneName: 
+    missionDescription: 
+    missionReward: 0
+    mechShopList: []
+    tankShopList: []
+    VTOLShopList: []
+    InfantryShopList: []
+    pilotPurchaseList: []
+    nextMissionsList: []
+    missionIconLocation: {x: 0, y: 0}
   pilots: []
   mechs: []
   tanks: []
@@ -1458,11 +1469,7 @@ MonoBehaviour:
   campaigns: []
   weapons: []
   buyableTankList: []
-  buyableMechList:
-  - Atlas
-  - Catapault
-  - Hunchback
-  - Jenner
+  buyableMechList: []
   buyableInfantryList: []
   buyableVTOLList: []
   buyablePilotList: []
@@ -1470,7 +1477,7 @@ MonoBehaviour:
   campaignList:
   - 
   DeploymentList: []
-  missionList: []
+  activeMissionList: []
   ownedTankList: []
   ownedMechList: []
   ownedInfantryList: []
@@ -1498,7 +1505,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1619917135}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5211c66823ed4684cb3c17de9c3c21b4, type: 3}
   m_Name: 
@@ -1512,7 +1519,7 @@ MonoBehaviour:
     damage: 8
     purchaseCost: 300000
   mechTemplateName: MechTemplate
-  mechTemplate:
+  unitTemplate:
     unitName: 
     iconFileName: 
     equipmentSlot: []
@@ -1524,66 +1531,9 @@ MonoBehaviour:
     maxHeat: 0
     speed: 0
     sensorRange: 0
-    visionRangs: 0
+    visionRange: 0
     upkeepCost: 0
     purchaseCost: 0
-  tankTemplateName: TankTemplate
-  tankTemplate:
-    unitName: 
-    iconFileName: 
-    equipmentName:
-    - Heavy Auto Cannon
-    - LRM
-    - Small Laser
-    armour: 12
-    maxArmour: 12
-    upkeepCost: 60000
-    speed: 5
-    weight: 0
-    sensorRange: 4
-    visionRangs: 3
-    purchaseCost: 1000000
-  infantryTemplateName: InfantryTemplate
-  infantryTemplate:
-    infantryWeaponName: Laser Rifle
-    unitName: 
-    iconFileName: 
-    infantryUnitSize: 30
-    upkeepCost: 30000
-    speed: 2
-    weight: 0
-    sensorRange: 5
-    visionRangs: 4
-    purchaseCost: 80000
-  VTOLTemplateName: CTOLTemplate
-  VTOLTemplate:
-    unitName: 
-    iconFileName: 
-    equipmentName: []
-    armour: 4
-    maxArmour: 4
-    upkeepCost: 30000
-    speed: 15
-    weight: 0
-    sensorRange: 13
-    visionRangs: 12
-    purchaseCost: 150000
-  aerospaceTemplateName: AerospaceTemplate
-  aerospaceTemplate:
-    Name: Firebird
-    equipmentName:
-    - Light Auto Cannon
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    armour: 5
-    armourMax: 5
-    upkeepCost: 120000
-    speed: 45
-    sensorRange: 30
-    visionRangs: 24
-    purchaseCost: 540000
   dropShipTemplateName: DropShipTemplate
   dropShipTemplate:
     Name: Leopard
@@ -1633,9 +1583,15 @@ MonoBehaviour:
   missionTemplateName: MissionTemplate
   missionTemplate:
     sceneName: Test Mission
+    missionDescription: 
     missionReward: 0
-    unitPurchaseList: []
+    mechShopList: []
+    tankShopList: []
+    VTOLShopList: []
+    InfantryShopList: []
     pilotPurchaseList: []
+    nextMissionsList: []
+    missionIconLocation: {x: 0, y: 0}
   campaignTemplateName: CampaignTemplate
   campaignTemplate:
     campaignName: Test Campaign

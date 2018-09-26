@@ -2,7 +2,10 @@
   "sceneName": "Test Mission",
   "missionDescription": "",
   "missionReward": 0,
-  "unitPurchaseList": [],
+  "mechShopList": [],
+  "tankShopList": [],
+  "VTOLShopList": [],
+  "InfantryShopList": [],
   "pilotPurchaseList": [],
   "nextMissionsList": [],
   "missionIconLocation": {

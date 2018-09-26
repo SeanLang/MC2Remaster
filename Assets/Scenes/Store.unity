@@ -1639,7 +1639,7 @@ MonoBehaviour:
     damage: 8
     purchaseCost: 300000
   mechTemplateName: MechTemplate
-  mechTemplate:
+  unitTemplate:
     unitName: 
     iconFileName: 
     equipmentSlot: []
@@ -1651,66 +1651,9 @@ MonoBehaviour:
     maxHeat: 0
     speed: 0
     sensorRange: 0
-    visionRangs: 0
+    visionRange: 0
     upkeepCost: 0
     purchaseCost: 0
-  tankTemplateName: TankTemplate
-  tankTemplate:
-    unitName: 
-    iconFileName: 
-    equipmentName:
-    - Heavy Auto Cannon
-    - LRM
-    - Small Laser
-    armour: 12
-    maxArmour: 12
-    upkeepCost: 60000
-    speed: 5
-    weight: 0
-    sensorRange: 4
-    visionRangs: 3
-    purchaseCost: 1000000
-  infantryTemplateName: InfantryTemplate
-  infantryTemplate:
-    infantryWeaponName: Laser Rifle
-    unitName: 
-    iconFileName: 
-    infantryUnitSize: 30
-    upkeepCost: 30000
-    speed: 2
-    weight: 0
-    sensorRange: 5
-    visionRangs: 4
-    purchaseCost: 80000
-  VTOLTemplateName: CTOLTemplate
-  VTOLTemplate:
-    unitName: 
-    iconFileName: 
-    equipmentName: []
-    armour: 4
-    maxArmour: 4
-    upkeepCost: 30000
-    speed: 15
-    weight: 0
-    sensorRange: 13
-    visionRangs: 12
-    purchaseCost: 150000
-  aerospaceTemplateName: AerospaceTemplate
-  aerospaceTemplate:
-    Name: Firebird
-    equipmentName:
-    - Light Auto Cannon
-    - LRM
-    - LRM
-    - LRM
-    - LRM
-    armour: 5
-    armourMax: 5
-    upkeepCost: 120000
-    speed: 45
-    sensorRange: 30
-    visionRangs: 24
-    purchaseCost: 540000
   dropShipTemplateName: DropShipTemplate
   dropShipTemplate:
     Name: Leopard
@@ -1760,9 +1703,24 @@ MonoBehaviour:
   missionTemplateName: MissionTemplate
   missionTemplate:
     sceneName: Test Mission
+    missionDescription: 
+    missionReward: 0
+    mechShopList: []
+    tankShopList: []
+    VTOLShopList: []
+    InfantryShopList: []
+    pilotPurchaseList: []
+    nextMissionsList: []
+    missionIconLocation: {x: 0, y: 0}
   campaignTemplateName: CampaignTemplate
   campaignTemplate:
     campaignName: Test Campaign
+    campaignDescription: 
+    startingMechs: []
+    missionList: []
+    startingMoney: 0
+  campaignList:
+    campaignList: []
 --- !u!114 &669116777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,6 +1736,17 @@ MonoBehaviour:
   missionName: 
   campaignName: 
   saveName: 
+  activeMission:
+    sceneName: 
+    missionDescription: 
+    missionReward: 0
+    mechShopList: []
+    tankShopList: []
+    VTOLShopList: []
+    InfantryShopList: []
+    pilotPurchaseList: []
+    nextMissionsList: []
+    missionIconLocation: {x: 0, y: 0}
   pilots: []
   mechs: []
   tanks: []
@@ -1798,6 +1767,9 @@ MonoBehaviour:
   buyableVTOLList: []
   buyablePilotList: []
   buyabelWeaponList: []
+  campaignList: []
+  DeploymentList: []
+  activeMissionList: []
   ownedTankList: []
   ownedMechList: []
   ownedInfantryList: []
@@ -1806,9 +1778,6 @@ MonoBehaviour:
   ownedDropShipList: []
   ownedPilotList: []
   weaponList: []
-  campaignList: []
-  missionList: []
-  DeploymentList: []
 --- !u!4 &669116778
 Transform:
   m_ObjectHideFlags: 0
@@ -2976,7 +2945,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1470614959}
   m_HandleRect: {fileID: 1470614958}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3553,7 +3522,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 488272708}
   m_HandleRect: {fileID: 488272707}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.99999845
   m_Size: 0.9
   m_NumberOfSteps: 11
   m_OnValueChanged:
@@ -3981,7 +3950,7 @@ RectTransform:
   m_Father: {fileID: 1493714137}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.0062499046}
+  m_AnchorMin: {x: 0, y: 0.006250024}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -4178,8 +4147,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1995353768}
   m_HandleRect: {fileID: 1995353767}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9937501
+  m_Value: 0.99997556
+  m_Size: 0.99375
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:

@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{16B2EB32-1FCB-C511-8310-EDBB2ADD0338}</ProjectGuid>
+    <ProjectGuid>{3D80FF00-D39B-5673-FCF2-93D4E4414261}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -78,46 +78,42 @@
     <Compile Include="Assets\Scripts\loadEquipmentScript.cs" />
     <Compile Include="Assets\Scripts\MechLabButtonController.cs" />
     <Compile Include="Assets\Scripts\MechLabController.cs" />
-    <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\AerospaceClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\CampaignClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\CampaignListClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\DropShipClass.cs" />
-    <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\InfantryClass.cs" />
-    <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\MechClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\MissionClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\PilotClass.cs" />
-    <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\TankClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\UnitClass.cs" />
-    <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\VTOLClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\WeaponClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\WeaponIconClass.cs" />
     <Compile Include="Assets\Scripts\SceneControllerScript.cs" />
     <Compile Include="Assets\Scripts\UIClasses\CampaignButtonController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\CampaignListController.cs" />
+    <Compile Include="Assets\Scripts\UIClasses\MissionButtonController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\MissionSelectionController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\StoreController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\UnitDisplayPanel.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="Unity.VectorGraphics">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VectorGraphics.Editor">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Library/ScriptAssemblies/Unity.VectorGraphics.Editor.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/Unity.VectorGraphics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.vectorgraphics">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Library/ScriptAssemblies/com.unity.vectorgraphics.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/com.unity.vectorgraphics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/UnityBuilds/2018.2.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -318,7 +314,7 @@
       <HintPath>D:/UnityBuilds/2018.2.7f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/New/Documents/GitHub/MC2RemasterDropBearCopy/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/New/Documents/GitHub/MC2Remaster/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/New/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

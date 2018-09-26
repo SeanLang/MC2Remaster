@@ -14,13 +14,14 @@ public class GameController : MonoBehaviour {
     public string missionName;
     public string campaignName;
     public string saveName;
+    public MissionClass activeMission;
 
     public List<PilotClass> pilots = new List<PilotClass>();
-    public List<MechClass> mechs = new List<MechClass>();
-    public List<TankClass> tanks = new List<TankClass>();
-    public List<InfantryClass> infantry = new List<InfantryClass>();
-    public List<VTOLClass> VTOLs = new List<VTOLClass>();
-    public List<AerospaceClass> aerospace = new List<AerospaceClass>();
+    public List<UnitClass> mechs = new List<UnitClass>();
+    public List<UnitClass> tanks = new List<UnitClass>();
+    public List<UnitClass> infantry = new List<UnitClass>();
+    public List<UnitClass> VTOLs = new List<UnitClass>();
+    public List<UnitClass> aerospace = new List<UnitClass>();
     public List<DropShipClass> dropShips = new List<DropShipClass>();
     public List<MissionClass> missions = new List<MissionClass>();
     public List<CampaignClass> campaigns = new List<CampaignClass>();
@@ -110,7 +111,7 @@ public class GameController : MonoBehaviour {
             if (fileList.Contains(a))
             {
                 print(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json");
-                mechs.Add(JsonUtility.FromJson<MechClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
+                mechs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
             }
         }
         #endregion
@@ -129,7 +130,7 @@ public class GameController : MonoBehaviour {
             if (fileList.Contains(a))
             {
                 print(Application.streamingAssetsPath + "/JSONs/TankData/" + a + ".json");
-                tanks.Add(JsonUtility.FromJson<TankClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/TankData/" + a + ".json")));
+                tanks.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/TankData/" + a + ".json")));
             }
         }
         #endregion
@@ -148,7 +149,7 @@ public class GameController : MonoBehaviour {
             if (fileList.Contains(a))
             {
                 print(Application.streamingAssetsPath + "/JSONs/InfantryData/" + a + ".json");
-                infantry.Add(JsonUtility.FromJson<InfantryClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/InfantryData/" + a + ".json")));
+                infantry.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/InfantryData/" + a + ".json")));
             }
         }
         #endregion
@@ -167,7 +168,7 @@ public class GameController : MonoBehaviour {
             if (fileList.Contains(a))
             {
                 print(Application.streamingAssetsPath + "/JSONs/VTOLData/" + a + ".json");
-                VTOLs.Add(JsonUtility.FromJson<VTOLClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/InfantryData/" + a + ".json")));
+                VTOLs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/InfantryData/" + a + ".json")));
             }
         }
         #endregion
@@ -186,7 +187,7 @@ public class GameController : MonoBehaviour {
             if (fileList.Contains(a))
             {
                 print(Application.streamingAssetsPath + "/JSONs/AerospaceData/" + a + ".json");
-                aerospace.Add(JsonUtility.FromJson<AerospaceClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/AerospaceData/" + a + ".json")));
+                aerospace.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/AerospaceData/" + a + ".json")));
             }
         }
         #endregion
