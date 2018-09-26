@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
     public string missionName;
     public string campaignName;
     public string saveName;
+
     public List<PilotClass> pilots = new List<PilotClass>();
     public List<MechClass> mechs = new List<MechClass>();
     public List<TankClass> tanks = new List<TankClass>();
@@ -24,23 +25,24 @@ public class GameController : MonoBehaviour {
     public List<MissionClass> missions = new List<MissionClass>();
     public List<CampaignClass> campaigns = new List<CampaignClass>();
     public List<WeaponClass> weapons = new List<WeaponClass>();
+
     public List<string> buyableTankList = new List<string>();
     public List<string> buyableMechList = new List<string>();
     public List<string> buyableInfantryList = new List<string>();
     public List<string> buyableVTOLList = new List<string>();
     public List<string> buyablePilotList = new List<string>();
     public List<string> buyabelWeaponList = new List<string>();
-    public List<string> TankList = new List<string>();
-    public List<string> MechList = new List<string>();
-    public List<string> InfantryList = new List<string>();
-    public List<string> VTOLList = new List<string>();
-    public List<string> aerospaceList = new List<string>();
-    public List<string> dropShipList = new List<string>();
-    public List<string> pilotList = new List<string>();
-    public List<string> weaponList = new List<string>();
     public List<string> campaignList = new List<string>();
-    public List<string> missionList = new List<string>();
     public List<string> DeploymentList = new List<string>();
+    public List<string> activeMissionList = new List<string>();
+    public List<string> ownedTankList = new List<string>();
+    public List<string> ownedMechList = new List<string>();
+    public List<string> ownedInfantryList = new List<string>();
+    public List<string> ownedVTOLList = new List<string>();
+    public List<string> ownedAerospaceList = new List<string>();
+    public List<string> ownedDropShipList = new List<string>();
+    public List<string> ownedPilotList = new List<string>();
+    public List<string> weaponList = new List<string>();
 
 
 
@@ -79,14 +81,14 @@ public class GameController : MonoBehaviour {
         saveData.buyableVTOLList = buyableVTOLList;
         saveData.buyablePilotList = buyablePilotList;
         saveData.buyabelWeaponList = buyabelWeaponList;
-        saveData.MechList = MechList;
-        saveData.TankList = TankList;
-        saveData.InfantryList = InfantryList;
-        saveData.VTOLList = VTOLList;
-        saveData.pilotList = pilotList;
+        saveData.MechList = ownedMechList;
+        saveData.TankList = ownedTankList;
+        saveData.InfantryList = ownedInfantryList;
+        saveData.VTOLList = ownedVTOLList;
+        saveData.pilotList = ownedPilotList;
         saveData.weaponList = weaponList;
         saveData.campaignList = campaignList;
-        saveData.missionList = missionList;
+        saveData.missionList = activeMissionList;
 
         bf.Serialize(saveFile, saveData);
         saveFile.Close();
@@ -103,7 +105,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/MechData/" + file.Name;
             fileList.Add (Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in MechList)
+        foreach (string a in ownedMechList)
         {
             if (fileList.Contains(a))
             {
@@ -122,7 +124,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/TankData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in TankList)
+        foreach (string a in ownedTankList)
         {
             if (fileList.Contains(a))
             {
@@ -141,7 +143,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/InfantryData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in InfantryList)
+        foreach (string a in ownedInfantryList)
         {
             if (fileList.Contains(a))
             {
@@ -160,7 +162,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/VTOLData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in VTOLList)
+        foreach (string a in ownedVTOLList)
         {
             if (fileList.Contains(a))
             {
@@ -179,7 +181,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/AerospaceData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in aerospaceList)
+        foreach (string a in ownedAerospaceList)
         {
             if (fileList.Contains(a))
             {
@@ -198,7 +200,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/DropShipData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in dropShipList)
+        foreach (string a in ownedDropShipList)
         {
             if (fileList.Contains(a))
             {
@@ -217,7 +219,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/MissionData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in missionList)
+        foreach (string a in activeMissionList)
         {
             if (fileList.Contains(a))
             {
@@ -274,7 +276,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/PilotData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in pilotList)
+        foreach (string a in ownedPilotList)
         {
             if (fileList.Contains(a))
             {
