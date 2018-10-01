@@ -1450,6 +1450,7 @@ MonoBehaviour:
   activeMission:
     sceneName: 
     missionDescription: 
+    missionBriefing: 
     missionReward: 0
     mechShopList: []
     tankShopList: []
@@ -1584,6 +1585,7 @@ MonoBehaviour:
   missionTemplate:
     sceneName: Test Mission
     missionDescription: 
+    missionBriefing: 
     missionReward: 0
     mechShopList: []
     tankShopList: []

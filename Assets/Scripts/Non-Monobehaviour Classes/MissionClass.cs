@@ -7,6 +7,7 @@ public class MissionClass  {
 
     public string sceneName;
     public string missionDescription;
+    public string missionBriefing;
     public int missionReward;
     public List<string> mechShopList = new List<string>();
     public List<string> tankShopList = new List<string>();

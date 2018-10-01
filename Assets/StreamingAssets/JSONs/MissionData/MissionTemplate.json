@@ -1,6 +1,7 @@
 {
   "sceneName": "Test Mission",
   "missionDescription": "",
+  "missionBriefing": "",
   "missionReward": 0,
   "mechShopList": [],
   "tankShopList": [],

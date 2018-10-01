@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\WeaponClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\WeaponIconClass.cs" />
     <Compile Include="Assets\Scripts\SceneControllerScript.cs" />
+    <Compile Include="Assets\Scripts\UIClasses\BriefingController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\CampaignButtonController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\CampaignListController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\MissionButtonController.cs" />
