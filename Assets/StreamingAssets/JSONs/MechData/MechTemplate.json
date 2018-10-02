@@ -10,7 +10,7 @@
   "maxHeat": 0,
   "speed": 0,
   "sensorRange": 0,
-  "visionRangs": 0,
+  "visionRange": 0,
   "upkeepCost": 0,
   "purchaseCost": 0
 }
