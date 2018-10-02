@@ -1,16 +1,20 @@
 {
   "sceneName": "Campaign 1 Mission 1",
   "missionDescription": "Campaign 1 Mission 1 Description",
+  "missionBriefing": "Briefing 1",
   "missionReward": 0,
-  "unitPurchaseList": [
+  "mechShopList": [
     "Atlas",
     "Catapault",
     "Hunchback",
     "Jenner"],
+  "tankShopList": [],
+  "VTOLShopList": [],
+  "InfantryShopList": [],
   "pilotPurchaseList": [],
   "nextMissionsList": [],
   "missionIconLocation": {
-    "x": 120.0,
-    "y": 30.0
+    "x": 130.0,
+    "y": 40.0
   }
 }

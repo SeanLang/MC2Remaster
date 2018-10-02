@@ -10,6 +10,7 @@ public class CampaignListController : MonoBehaviour {
     public CampaignListClass campaignList;
     public List<CampaignClass> campaignClassList = new List<CampaignClass>();
     public GameObject campaignPanel;
+    public GameObject nextButton;
     public Text titlePanel;
     public Text descriptionPanel;
     GameObject currentPanel;
@@ -31,6 +32,7 @@ public class CampaignListController : MonoBehaviour {
             currentPanel.GetComponentInChildren<Text>().text = a.campaignName;
             currentPanel.GetComponent<CampaignButtonController>().title = titlePanel;
             currentPanel.GetComponent<CampaignButtonController>().description = descriptionPanel;
+            currentPanel.GetComponent<CampaignButtonController>().nextButton = nextButton;
         }
 	}
 	
