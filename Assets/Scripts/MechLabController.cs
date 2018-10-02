@@ -22,7 +22,7 @@ public class MechLabController : MonoBehaviour {
     public Color Equipment;
     public Color blank;
 
-    public UnitClass mechDataStorage;
+    public MechClass mechDataStorage;
     public WeaponIconClass[] weaponIcons;
     public MechLabButtonController[] equipmentButtons;
     public Color currentIconColour;

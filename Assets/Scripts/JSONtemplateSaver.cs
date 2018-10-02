@@ -11,7 +11,15 @@ public class JSONtemplateSaver : MonoBehaviour {
     public string weaponTemplateName;
     public WeaponClass weaponTemplate;
     public string mechTemplateName;
-    public UnitClass unitTemplate;
+    public MechClass mechTemplate;
+    public string tankTemplateName;
+    public TankClass tankTemplate;
+    public string infantryTemplateName;
+    public InfantryClass infantryTemplate;
+    public string VTOLTemplateName;
+    public VTOLClass VTOLTemplate;
+    public string aerospaceTemplateName;
+    public AerospaceClass aerospaceTemplate;
     public string dropShipTemplateName;
     public DropShipClass dropShipTemplate;
     public string pilotTemplateName;
@@ -30,12 +38,36 @@ public class JSONtemplateSaver : MonoBehaviour {
         File.WriteAllText(filePath, jsonAsData);
         #endregion
         print("weapon");
-        #region Unit Save
-        jsonAsData = JsonConvert.SerializeObject(unitTemplate, Formatting.Indented);
+        #region Mech Save
+        jsonAsData = JsonConvert.SerializeObject(mechTemplate, Formatting.Indented);
         filePath = Application.streamingAssetsPath + "/JSONs/MechData/" + mechTemplateName + (".json");
         File.WriteAllText(filePath, jsonAsData);
         #endregion
         print("mech");
+        #region Tank Save
+        jsonAsData = JsonConvert.SerializeObject(tankTemplate, Formatting.Indented);
+        filePath = Application.streamingAssetsPath + "/JSONs/TankData/" + tankTemplateName + (".json");
+        File.WriteAllText(filePath, jsonAsData);
+        #endregion
+        print("tank");
+        #region Infantry Save
+        jsonAsData = JsonConvert.SerializeObject(infantryTemplate, Formatting.Indented);
+        filePath = Application.streamingAssetsPath + "/JSONs/InfantryData/" + infantryTemplateName + (".json");
+        File.WriteAllText(filePath, jsonAsData);
+        #endregion
+        print("infantry");
+        #region VTOL Save
+        jsonAsData = JsonConvert.SerializeObject(VTOLTemplate, Formatting.Indented);
+        filePath = Application.streamingAssetsPath + "/JSONs/VTOLData/" + VTOLTemplateName + (".json");
+        File.WriteAllText(filePath, jsonAsData);
+        #endregion
+        print("VTOL");
+        #region Aerospace Save
+        jsonAsData = JsonConvert.SerializeObject(aerospaceTemplate, Formatting.Indented);
+        filePath = Application.streamingAssetsPath + "/JSONs/AerospaceData/" + aerospaceTemplateName + (".json");
+        File.WriteAllText(filePath, jsonAsData);
+        #endregion
+        print("aerospace");
         #region DropShip Save
         jsonAsData = JsonConvert.SerializeObject(dropShipTemplate, Formatting.Indented);
         filePath = Application.streamingAssetsPath + "/JSONs/DropShipData/" + dropShipTemplateName + (".json");

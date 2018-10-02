@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 222528343272382474}
   - component: {fileID: 114022041238265238}
   - component: {fileID: 114311995937370740}
-  - component: {fileID: 114946276009107762}
   m_Layer: 5
   m_Name: MissionButton
   m_TagString: Untagged
@@ -112,29 +111,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114022041238265238}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114946276009107762}
-        m_MethodName: SetActiveMission
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114946276009107762}
-        m_MethodName: ActivateNextButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114900983910259712
@@ -170,31 +147,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Mission
---- !u!114 &114946276009107762
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1098174937706232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1978063a4b583884a8f9c8fcca2dceec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missionClass:
-    sceneName: 
-    missionDescription: 
-    missionReward: 0
-    mechShopList: []
-    tankShopList: []
-    VTOLShopList: []
-    InfantryShopList: []
-    pilotPurchaseList: []
-    nextMissionsList: []
-    missionIconLocation: {x: 0, y: 0}
-  missionDescription: {fileID: 0}
-  videoPlayer: {fileID: 0}
-  nextButton: {fileID: 0}
 --- !u!222 &222528343272382474
 CanvasRenderer:
   m_ObjectHideFlags: 1
