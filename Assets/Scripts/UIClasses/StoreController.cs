@@ -137,15 +137,9 @@ public class StoreController : MonoBehaviour, IDropHandler
         }
     }
 
-    void OnEnable()
+    void Start()
     {
-        if (isStore == true)
-        {
-            mechs = new List<UnitClass>();
-            pilots = new List<PilotClass>();
-            tanks = new List<UnitClass>();
-            infantry = new List<UnitClass>();
-            VTOLs = new List<UnitClass>();
+        if (isStore == true) {
             foreach (string a in GameController.controller.buyableMechList)
             {
                 mechs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
@@ -170,11 +164,7 @@ public class StoreController : MonoBehaviour, IDropHandler
 
         if (isInventory == true)
         {
-            mechs = new List<UnitClass>();
-            pilots = new List<PilotClass>();
-            tanks = new List<UnitClass>();
-            infantry = new List<UnitClass>();
-            VTOLs = new List<UnitClass>();
+
             foreach (string a in GameController.controller.ownedMechList)
             {
                 mechs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
@@ -205,7 +195,7 @@ public class StoreController : MonoBehaviour, IDropHandler
         currentWindowID = windowID;
         switch (windowID)
         {
-            #region Mech Window
+            #region case0
             case 0:
                 foreach (GameObject c in activeBuyList)
                 {
@@ -231,14 +221,10 @@ public class StoreController : MonoBehaviour, IDropHandler
                 {
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (count * 100) + 10);
                 }
-                else
-                {
-                    this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
-                }
                 break;
             #endregion
 
-            #region Tank Window
+            #region case1
             case 1:
                 foreach (GameObject c in activeBuyList)
                 {
@@ -266,7 +252,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                 break;
             #endregion
 
-            #region VTOL Window
+            #region case2
             case 2:
                 foreach (GameObject c in activeBuyList)
                 {
@@ -294,7 +280,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                 break;
             #endregion
 
-            #region Infantry List
+            #region case3
             case 3:
                 foreach (GameObject c in activeBuyList)
                 {
