@@ -14,13 +14,13 @@ public class MissionButtonController : MonoBehaviour {
     void Start ()
     {
         this.name = missionClass.sceneName;
-        missionDescription.text = missionClass.missionDescription;
         transform.localPosition = missionClass.missionIconLocation;
     }
     
     public void SetActiveMission ()
     {
         GameController.controller.activeMission = missionClass;
+        missionDescription.text = missionClass.missionDescription;
     }
 
     public void ActivateNextButton()

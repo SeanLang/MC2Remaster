@@ -13,8 +13,8 @@ public class CampaignButtonController : MonoBehaviour {
 
     public void SetCampaignText ()
     {
-        title.text = campaignClass.campaignName;
-        description.text = campaignClass.campaignDescription;
+        //title.text = campaignClass.campaignName;
+        //description.text = campaignClass.campaignDescription;
         GameController.controller.activeMissionList = campaignClass.missionList;
     }
 
