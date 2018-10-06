@@ -10,10 +10,10 @@ public class MissionClass  {
     public string missionBriefing;
     public int missionReward;
     public List<string> mechShopList = new List<string>();
-    public List<string> tankShopList = new List<string>();
-    public List<string> VTOLShopList = new List<string>();
-    public List<string> InfantryShopList = new List<string>();
-    public List<string> pilotPurchaseList = new List<string>();
+    public List<string> vehicleShopList = new List<string>();
+    public List<string> equipmentShopList = new List<string>();
+    public List<string> pilotShopList = new List<string>();
+    public List<string> consumableShopList = new List<string>();
     public List<string> nextMissionsList = new List<string>();
     public Vector2 missionIconLocation;
 

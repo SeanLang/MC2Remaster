@@ -11,14 +11,22 @@ public class StoreController : MonoBehaviour, IDropHandler
 
     public List<PilotClass> pilots = new List<PilotClass>();
     public List<UnitClass> mechs = new List<UnitClass>();
-    public List<UnitClass> tanks = new List<UnitClass>();
+    public List<UnitClass> vehicles = new List<UnitClass>();
     public List<UnitClass> infantry = new List<UnitClass>();
     public List<UnitClass> VTOLs = new List<UnitClass>();
-    List<GameObject> activeBuyList = new List<GameObject>();
+    public List<ConsumableClass> consumables = new List<ConsumableClass>();
+    List<GameObject> thisDisplayList = new List<GameObject>();
+
+    UnitDisplayPanelController scriptOfDraggedUnit;
+    PilotDisplayPanelController scriptOfDraggedPilot;
+    ConsumableDisplayPanelController scriptOfDraggedConsumable;
 
     public GameObject otherPanel;
     public GameObject selectedIcon;
     public GameObject unitPanel;
+    public GameObject pilotPanel;
+    public GameObject consumablePanel;
+    public GameObject deploymentPanel;
     public GameObject canvasTopLayer;
 
     public bool isStoreScreen;
@@ -30,35 +38,196 @@ public class StoreController : MonoBehaviour, IDropHandler
 
     public int maxPanelsOnScreen;
 
+    RectTransform invPanel;
     int currentWindowID;
+    GameObject dragged;
     GameObject currentInstantiate;
-    UnitDisplayPanel activeUnit;
+    UnitDisplayPanelController activeUnit;
     StoreController storeScript;
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("dropped");
-        Debug.Log(DragHandler.draggedObject);
-        RectTransform invPanel = transform as RectTransform;
-
-        if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
+        switch (currentWindowID)
         {
-            Debug.Log("Out of drop");
-            GameObject dragged = UnitDisplayPanel.draggedObject;
-            UnitDisplayPanel scriptOfDragged = dragged.GetComponent<UnitDisplayPanel>();
-            dragged.transform.position = dropPosition;
-            dragged.transform.SetParent(this.transform);
-            mechs.Add(scriptOfDragged.thisPanelUnit);
-            otherPanel.GetComponent<StoreController>().mechs.Remove(scriptOfDragged.thisPanelUnit);
-            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-            SetWindow(currentWindowID);
-            if (isStore == true)
+            #region Mechs
+            case 0:
+             invPanel = transform as RectTransform;
+            if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
             {
-                GameController.controller.money = GameController.controller.money + scriptOfDragged.unitCost;
-            }else if(isStoreScreen == true && isInventory == true)
-            {
-                GameController.controller.money = GameController.controller.money - scriptOfDragged.unitCost;
+                if (isDeployment == false)
+                {
+                    dragged = UnitDisplayPanelController.draggedUnit;
+                    scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
+                    dragged.transform.position = dropPosition;
+                    dragged.transform.SetParent(this.transform);
+                    if (!mechs.Contains(scriptOfDraggedUnit.thisPanelUnit))
+                    {
+                        mechs.Add(scriptOfDraggedUnit.thisPanelUnit);
+                        otherPanel.GetComponent<StoreController>().mechs.Remove(scriptOfDraggedUnit.thisPanelUnit);
+                        otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                        SetWindow(currentWindowID);
+                    }
+                    if (isStore == true)
+                    {
+                        GameController.controller.money = GameController.controller.money + scriptOfDraggedUnit.unitCost;
+                    }
+                    else if (isStoreScreen == true && isInventory == true)
+                    {
+                        GameController.controller.money = GameController.controller.money - scriptOfDraggedUnit.unitCost;
+                    }
+                }
+                else
+                {
+
+                    dragged = UnitDisplayPanelController.draggedUnit;
+                    scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
+                    if (!mechs.Contains(scriptOfDraggedUnit.thisPanelUnit))
+                    {
+                        mechs.Add(scriptOfDraggedUnit.thisPanelUnit);
+                        otherPanel.GetComponent<StoreController>().mechs.Remove(scriptOfDraggedUnit.thisPanelUnit);
+                        otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                        Destroy(dragged);
+                        SetWindow(currentWindowID);
+                    }
+                }
             }
+            break;
+            #endregion
+
+            #region Vehicles
+            case 1:
+                 invPanel = transform as RectTransform;
+                if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
+                {
+                    if (isDeployment == false)
+                    {
+                        dragged = UnitDisplayPanelController.draggedUnit;
+                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
+                        dragged.transform.position = dropPosition;
+                        dragged.transform.SetParent(this.transform);
+                        if (!vehicles.Contains(scriptOfDraggedUnit.thisPanelUnit))
+                        {
+                            vehicles.Add(scriptOfDraggedUnit.thisPanelUnit);
+                            otherPanel.GetComponent<StoreController>().vehicles.Remove(scriptOfDraggedUnit.thisPanelUnit);
+                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                            SetWindow(currentWindowID);
+                        }
+                        if (isStore == true)
+                        {
+                            GameController.controller.money = GameController.controller.money + scriptOfDraggedUnit.unitCost;
+                        }
+                        else if (isStoreScreen == true && isInventory == true)
+                        {
+                            GameController.controller.money = GameController.controller.money - scriptOfDraggedUnit.unitCost;
+                        }
+                    }
+                    else
+                    {
+
+                        dragged = UnitDisplayPanelController.draggedUnit;
+                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
+                        if (!vehicles.Contains(scriptOfDraggedUnit.thisPanelUnit))
+                        {
+                            vehicles.Add(scriptOfDraggedUnit.thisPanelUnit);
+                            otherPanel.GetComponent<StoreController>().mechs.Remove(scriptOfDraggedUnit.thisPanelUnit);
+                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                            Destroy(dragged);
+                            SetWindow(currentWindowID);
+                        }
+                    }
+                }
+                break;
+            #endregion
+
+            #region Pilots
+            case 2:
+                invPanel = transform as RectTransform;
+                if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
+                {
+                    if (isDeployment == false)
+                    {
+                        dragged = PilotDisplayPanelController.draggedPilot;
+                        scriptOfDraggedPilot = dragged.GetComponent<PilotDisplayPanelController>();
+                        dragged.transform.position = dropPosition;
+                        dragged.transform.SetParent(this.transform);
+                        if (!pilots.Contains(scriptOfDraggedPilot.thisPanelPilot))
+                        {
+                            pilots.Add(scriptOfDraggedPilot.thisPanelPilot);
+                            otherPanel.GetComponent<StoreController>().pilots.Remove(scriptOfDraggedPilot.thisPanelPilot);
+                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                            SetWindow(currentWindowID);
+                        }
+                        if (isStore == true)
+                        {
+                            GameController.controller.money = GameController.controller.money + scriptOfDraggedPilot.unitCost;
+                        }
+                        else if (isStoreScreen == true && isInventory == true)
+                        {
+                            GameController.controller.money = GameController.controller.money - scriptOfDraggedPilot.unitCost;
+                        }
+                    }
+                    else
+                    {
+
+                        dragged = UnitDisplayPanelController.draggedUnit;
+                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
+                        if (!pilots.Contains(scriptOfDraggedPilot.thisPanelPilot))
+                        {
+                            pilots.Add(scriptOfDraggedPilot.thisPanelPilot);
+                            otherPanel.GetComponent<StoreController>().pilots.Remove(scriptOfDraggedPilot.thisPanelPilot);
+                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                            Destroy(dragged);
+                            SetWindow(currentWindowID);
+                        }
+                    }
+                }
+                break;
+            #endregion
+
+            #region Consumables
+            case 3:
+                invPanel = transform as RectTransform;
+                if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
+                {
+                    if (isDeployment == false)
+                    {
+                        dragged = ConsumableDisplayPanelController.draggedConsumable;
+                        scriptOfDraggedConsumable = dragged.GetComponent<ConsumableDisplayPanelController>();
+                        dragged.transform.position = dropPosition;
+                        dragged.transform.SetParent(this.transform);
+                        if (!consumables.Contains(scriptOfDraggedConsumable.thisPanelConsumable))
+                        {
+                            consumables.Add(scriptOfDraggedConsumable.thisPanelConsumable);
+                            otherPanel.GetComponent<StoreController>().consumables.Remove(scriptOfDraggedConsumable.thisPanelConsumable);
+                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                            SetWindow(currentWindowID);
+                        }
+                        if (isStore == true)
+                        {
+                            GameController.controller.money = GameController.controller.money + scriptOfDraggedPilot.unitCost;
+                        }
+                        else if (isStoreScreen == true && isInventory == true)
+                        {
+                            GameController.controller.money = GameController.controller.money - scriptOfDraggedPilot.unitCost;
+                        }
+                    }
+                    else
+                    {
+
+                        dragged = UnitDisplayPanelController.draggedUnit;
+                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
+                        if (!consumables.Contains(scriptOfDraggedConsumable.thisPanelConsumable))
+                        {
+                            consumables.Add(scriptOfDraggedConsumable.thisPanelConsumable);
+                            otherPanel.GetComponent<StoreController>().consumables.Remove(scriptOfDraggedConsumable.thisPanelConsumable);
+                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                            Destroy(dragged);
+                            SetWindow(currentWindowID);
+                        }
+                    }
+                }
+                break;
+                #endregion
         }
     }
 
@@ -72,24 +241,24 @@ public class StoreController : MonoBehaviour, IDropHandler
         if (isStore == true)
         {
             GameController.controller.buyableMechList = new List<string>();
-            GameController.controller.buyableTankList = new List<string>();
-            GameController.controller.buyableVTOLList = new List<string>();
-            GameController.controller.buyableInfantryList = new List<string>();
+            GameController.controller.buyableVehicleList = new List<string>();
+            GameController.controller.buyablePilotList = new List<string>();
+            GameController.controller.buyableConsumableList = new List<string>();
             foreach (UnitClass a in mechs)
             {
                 GameController.controller.buyableMechList.Add(a.unitName);
             }
-            foreach (UnitClass a in tanks)
+            foreach (UnitClass a in vehicles)
             {
-                GameController.controller.buyableTankList.Add(a.unitName);
+                GameController.controller.buyableVehicleList.Add(a.unitName);
             }
-            foreach (UnitClass a in VTOLs)
+            foreach (PilotClass a in pilots)
             {
-                GameController.controller.buyableVTOLList.Add(a.unitName);
+                GameController.controller.buyablePilotList.Add(a.pilotName);
             }
-            foreach (UnitClass a in infantry)
+            foreach (ConsumableClass a in consumables)
             {
-                GameController.controller.buyableInfantryList.Add(a.unitName);
+                GameController.controller.buyableConsumableList.Add(a.consumableName);
             }
         }
         if (isInventory == true)
@@ -102,7 +271,7 @@ public class StoreController : MonoBehaviour, IDropHandler
             {
                 GameController.controller.ownedMechList.Add(a.unitName);
             }
-            foreach (UnitClass a in tanks)
+            foreach (UnitClass a in vehicles)
             {
                 GameController.controller.ownedTankList.Add(a.unitName);
             }
@@ -117,22 +286,22 @@ public class StoreController : MonoBehaviour, IDropHandler
         }
         if (isDeployment == true)
         {
-            GameController.controller.DeploymentList = new List<string>();
+            GameController.controller.deploymentList = new List<string>();
             foreach(UnitClass a in mechs)
             {
-                GameController.controller.DeploymentList.Add(a.unitName);
+                GameController.controller.deploymentList.Add(a.unitName);
             }
-            foreach (UnitClass a in tanks)
+            foreach (UnitClass a in vehicles)
             {
-                GameController.controller.DeploymentList.Add(a.unitName);
+                GameController.controller.deploymentList.Add(a.unitName);
             }
             foreach (UnitClass a in VTOLs)
             {
-                GameController.controller.DeploymentList.Add(a.unitName);
+                GameController.controller.deploymentList.Add(a.unitName);
             }
             foreach (UnitClass a in infantry)
             {
-                GameController.controller.DeploymentList.Add(a.unitName);
+                GameController.controller.deploymentList.Add(a.unitName);
             }
         }
     }
@@ -143,7 +312,7 @@ public class StoreController : MonoBehaviour, IDropHandler
         {
             mechs = new List<UnitClass>();
             pilots = new List<PilotClass>();
-            tanks = new List<UnitClass>();
+            vehicles = new List<UnitClass>();
             infantry = new List<UnitClass>();
             VTOLs = new List<UnitClass>();
             foreach (string a in GameController.controller.buyableMechList)
@@ -154,46 +323,38 @@ public class StoreController : MonoBehaviour, IDropHandler
             {
                 pilots.Add(JsonUtility.FromJson<PilotClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/PilotData/" + a + ".json")));
             }
-            foreach (string a in GameController.controller.buyableTankList)
+            foreach (string a in GameController.controller.buyableVehicleList)
             {
-                tanks.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/TankData/" + a + ".json")));
+                vehicles.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/VehicleData/" + a + ".json")));
             }
-            foreach (string a in GameController.controller.buyableInfantryList)
+            foreach (string a in GameController.controller.buyableConsumableList)
             {
-                infantry.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/InfantryData/" + a + ".json")));
+                consumables.Add(JsonUtility.FromJson<ConsumableClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/ConsumableData/" + a + ".json")));
             }
-            foreach (string a in GameController.controller.buyableVTOLList)
-            {
-                VTOLs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/VTOLData/" + a + ".json")));
-            }
-        }
 
-        if (isInventory == true)
-        {
-            mechs = new List<UnitClass>();
-            pilots = new List<PilotClass>();
-            tanks = new List<UnitClass>();
-            infantry = new List<UnitClass>();
-            VTOLs = new List<UnitClass>();
-            foreach (string a in GameController.controller.ownedMechList)
+            if (isInventory == true)
             {
-                mechs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
-            }
-            foreach (string a in GameController.controller.ownedPilotList)
-            {
-                pilots.Add(JsonUtility.FromJson<PilotClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/PilotData/" + a + ".json")));
-            }
-            foreach (string a in GameController.controller.ownedTankList)
-            {
-                tanks.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/TankData/" + a + ".json")));
-            }
-            foreach (string a in GameController.controller.ownedInfantryList)
-            {
-                infantry.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/InfantryData/" + a + ".json")));
-            }
-            foreach (string a in GameController.controller.ownedVTOLList)
-            {
-                VTOLs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/VTOLData/" + a + ".json")));
+                mechs = new List<UnitClass>();
+                pilots = new List<PilotClass>();
+                vehicles = new List<UnitClass>();
+                infantry = new List<UnitClass>();
+                VTOLs = new List<UnitClass>();
+                foreach (string a in GameController.controller.buyableMechList)
+                {
+                    mechs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
+                }
+                foreach (string a in GameController.controller.buyablePilotList)
+                {
+                    pilots.Add(JsonUtility.FromJson<PilotClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/PilotData/" + a + ".json")));
+                }
+                foreach (string a in GameController.controller.buyableVehicleList)
+                {
+                    vehicles.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/VehicleData/" + a + ".json")));
+                }
+                foreach (string a in GameController.controller.buyableConsumableList)
+                {
+                    consumables.Add(JsonUtility.FromJson<ConsumableClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/ConsumableData/" + a + ".json")));
+                }
             }
         }
         SetWindow(0);
@@ -205,19 +366,26 @@ public class StoreController : MonoBehaviour, IDropHandler
         currentWindowID = windowID;
         switch (windowID)
         {
-            #region Mech Window
+            #region Mech List
             case 0:
-                foreach (GameObject c in activeBuyList)
+                foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
-                activeBuyList = new List<GameObject>();
+                thisDisplayList = new List<GameObject>();
                 count = 0;
                 foreach (UnitClass b in mechs)
                 {
                     count++;
-                    currentInstantiate = Instantiate(unitPanel, transform, false);
-                    UnitDisplayPanel currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanel>();
+                    if (isDeployment == false)
+                    {
+                        currentInstantiate = Instantiate(unitPanel, transform, false);
+                    }
+                    else
+                    {
+                        currentInstantiate = Instantiate(deploymentPanel, transform, false);
+                    }
+                    UnitDisplayPanelController currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanelController>();
                     currentPanelClass.canvasTopLayer = canvasTopLayer;
                     currentPanelClass.thisPanelUnit = b;
                     currentPanelClass.unitName = b.unitName;
@@ -225,7 +393,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                     currentPanelClass.unitTonnage = b.weight;
                     currentPanelClass.iconFileName = b.iconFileName;
                     currentPanelClass.parentPanel = this;
-                    activeBuyList.Add(currentInstantiate);
+                    thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
                 {
@@ -238,110 +406,141 @@ public class StoreController : MonoBehaviour, IDropHandler
                 break;
             #endregion
 
-            #region Tank Window
+            #region Vehicle List
             case 1:
-                foreach (GameObject c in activeBuyList)
+                foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
-                activeBuyList = new List<GameObject>();
+                thisDisplayList = new List<GameObject>();
                 count = 0;
-                foreach (UnitClass b in tanks)
+                foreach (UnitClass b in vehicles)
                 {
                     count++;
-                    currentInstantiate = Instantiate(unitPanel, transform, false);
-                    UnitDisplayPanel currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanel>();
+                    if (isDeployment == false)
+                    {
+                        currentInstantiate = Instantiate(unitPanel, transform, false);
+                    }
+                    else
+                    {
+                        currentInstantiate = Instantiate(deploymentPanel, transform, false);
+                    }
+                    UnitDisplayPanelController currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanelController>();
+                    currentPanelClass.canvasTopLayer = canvasTopLayer;
                     currentPanelClass.thisPanelUnit = b;
                     currentPanelClass.unitName = b.unitName;
                     currentPanelClass.unitCost = b.purchaseCost;
                     currentPanelClass.unitTonnage = b.weight;
                     currentPanelClass.iconFileName = b.iconFileName;
                     currentPanelClass.parentPanel = this;
-                    activeBuyList.Add(currentInstantiate);
+                    thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
                 {
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (count * 100) + 10);
                 }
+                else
+                {
+                    this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
+                }
                 break;
             #endregion
 
-            #region VTOL Window
+            #region Pilot List
             case 2:
-                foreach (GameObject c in activeBuyList)
+                foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
-                activeBuyList = new List<GameObject>();
+                thisDisplayList = new List<GameObject>();
                 count = 0;
-                foreach (UnitClass b in VTOLs)
+                foreach (PilotClass b in pilots)
                 {
                     count++;
-                    currentInstantiate = Instantiate(unitPanel, transform, false);
-                    UnitDisplayPanel currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanel>();
-                    currentPanelClass.thisPanelUnit = b;
-                    currentPanelClass.unitName = b.unitName;
-                    currentPanelClass.unitCost = b.purchaseCost;
-                    currentPanelClass.unitTonnage = b.weight;
-                    currentPanelClass.iconFileName = b.iconFileName;
-                    currentPanelClass.parentPanel = this;
-                    activeBuyList.Add(currentInstantiate);
+                    if (isDeployment == false)
+                    {
+                        currentInstantiate = Instantiate(pilotPanel, transform, false);
+                    }
+                    else
+                    {
+                        currentInstantiate = Instantiate(deploymentPanel, transform, false);
+                    }
+                    PilotDisplayPanelController currentPilotPanelClass = currentInstantiate.GetComponent<PilotDisplayPanelController>();
+                    currentPilotPanelClass.canvasTopLayer = canvasTopLayer;
+                    currentPilotPanelClass.thisPanelPilot = b;
+                    currentPilotPanelClass.pilotName = b.pilotName;
+                    currentPilotPanelClass.unitCost = b.purchaseCost;
+                    currentPilotPanelClass.unitRank = b.rank;
+                    currentPilotPanelClass.iconFileName = b.iconFileName;
+                    currentPilotPanelClass.parentPanel = this;
+                    thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
                 {
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (count * 100) + 10);
+                }
+                else
+                {
+                    this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
                 }
                 break;
             #endregion
 
-            #region Infantry List
+            #region Consumable List
             case 3:
-                foreach (GameObject c in activeBuyList)
+                foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
-                activeBuyList = new List<GameObject>();
+                thisDisplayList = new List<GameObject>();
                 count = 0;
-                foreach (UnitClass b in infantry)
+                foreach (ConsumableClass b in consumables)
                 {
                     count++;
-                    currentInstantiate = Instantiate(unitPanel, transform, false);
-                    UnitDisplayPanel currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanel>();
-                    currentPanelClass.thisPanelUnit = b;
-                    currentPanelClass.unitName = b.unitName;
-                    currentPanelClass.unitCost = b.purchaseCost;
-                    currentPanelClass.unitTonnage = b.weight;
-                    currentPanelClass.iconFileName = b.iconFileName;
-                    currentPanelClass.parentPanel = this;
-                    activeBuyList.Add(currentInstantiate);
+                    if (isDeployment == false)
+                    {
+                        currentInstantiate = Instantiate(consumablePanel, transform, false);
+                    }
+                    ConsumableDisplayPanelController currentConsumablePanelClass = currentInstantiate.GetComponent<ConsumableDisplayPanelController>();
+                    currentConsumablePanelClass.canvasTopLayer = canvasTopLayer;
+                    currentConsumablePanelClass.thisPanelConsumable = b;
+                    currentConsumablePanelClass.consumableName = b.consumableName;
+                    currentConsumablePanelClass.consumableCost = b.purchaseCost;
+                    currentConsumablePanelClass.iconFileName = b.iconFileName;
+                    currentConsumablePanelClass.parentPanel = this;
+                    thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
                 {
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (count * 100) + 10);
+                }
+                else
+                {
+                    this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
                 }
                 break;
             #endregion
 
             #region case4
             case 4:
-                foreach (GameObject c in activeBuyList)
+                foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
-                activeBuyList = new List<GameObject>();
+                thisDisplayList = new List<GameObject>();
                 count = 0;
                 foreach (UnitClass b in mechs)
                 {
                     count++;
                     currentInstantiate = Instantiate(unitPanel, transform, false);
-                    UnitDisplayPanel currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanel>();
+                    UnitDisplayPanelController currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanelController>();
                     currentPanelClass.thisPanelUnit = b;
                     currentPanelClass.unitName = b.unitName;
                     currentPanelClass.unitCost = b.purchaseCost;
                     currentPanelClass.unitTonnage = b.weight;
                     currentPanelClass.iconFileName = b.iconFileName;
                     currentPanelClass.parentPanel = this;
-                    activeBuyList.Add(currentInstantiate);
+                    thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
                 {
