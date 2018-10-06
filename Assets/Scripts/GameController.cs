@@ -25,16 +25,16 @@ public class GameController : MonoBehaviour {
     public List<DropShipClass> dropShips = new List<DropShipClass>();
     public List<MissionClass> missions = new List<MissionClass>();
     public List<CampaignClass> campaigns = new List<CampaignClass>();
-    public List<WeaponClass> weapons = new List<WeaponClass>();
+    public List<ConsumableClass> weapons = new List<ConsumableClass>();
 
-    public List<string> buyableTankList = new List<string>();
+    public List<string> buyableVehicleList = new List<string>();
     public List<string> buyableMechList = new List<string>();
-    public List<string> buyableInfantryList = new List<string>();
-    public List<string> buyableVTOLList = new List<string>();
     public List<string> buyablePilotList = new List<string>();
     public List<string> buyabelWeaponList = new List<string>();
+    public List<string> buyableConsumableList = new List<string>();
     public List<string> campaignList = new List<string>();
-    public List<string> DeploymentList = new List<string>();
+    public List<string> deploymentList = new List<string>();
+    public List<string> pilotDeploymentList = new List<string>();
     public List<string> activeMissionList = new List<string>();
     public List<string> ownedTankList = new List<string>();
     public List<string> ownedMechList = new List<string>();
@@ -77,9 +77,7 @@ public class GameController : MonoBehaviour {
         saveData.campaignName = campaignName;
         
         saveData.buyableMechList = buyableMechList;
-        saveData.buyableTankList = buyableTankList;
-        saveData.buyableInfantryList = buyableInfantryList;
-        saveData.buyableVTOLList = buyableVTOLList;
+        saveData.buyableTankList = buyableVehicleList;
         saveData.buyablePilotList = buyablePilotList;
         saveData.buyabelWeaponList = buyabelWeaponList;
         saveData.MechList = ownedMechList;
@@ -117,20 +115,20 @@ public class GameController : MonoBehaviour {
         #endregion
 
         #region Tanks
-        targetDirectory = new DirectoryInfo(Application.streamingAssetsPath + "/JSONs/TankData");
+        targetDirectory = new DirectoryInfo(Application.streamingAssetsPath + "/JSONs/VehicleData");
         fileInfoList = targetDirectory.GetFiles("*.*");
         fileList = new List<string>();
         foreach (FileInfo file in fileInfoList)
         {
-            string targetFileName = Application.streamingAssetsPath + "/JSONs/TankData/" + file.Name;
+            string targetFileName = Application.streamingAssetsPath + "/JSONs/VehicleData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
         foreach (string a in ownedTankList)
         {
             if (fileList.Contains(a))
             {
-                print(Application.streamingAssetsPath + "/JSONs/TankData/" + a + ".json");
-                tanks.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/TankData/" + a + ".json")));
+                print(Application.streamingAssetsPath + "/JSONs/VehicleData/" + a + ".json");
+                tanks.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/VehicleData/" + a + ".json")));
             }
         }
         #endregion
@@ -244,7 +242,7 @@ public class GameController : MonoBehaviour {
             if (fileList.Contains(a))
             {
                 print(Application.streamingAssetsPath + "/JSONs/WeaponData/" + a + ".json");
-                weapons.Add(JsonUtility.FromJson<WeaponClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/WeaponData/" + a + ".json")));
+                weapons.Add(JsonUtility.FromJson<ConsumableClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/WeaponData/" + a + ".json")));
             }
         }
         #endregion

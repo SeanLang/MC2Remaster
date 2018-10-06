@@ -1,0 +1,15 @@
+{
+  "sceneName": "",
+  "missionDescription": "",
+  "missionBriefing": "",
+  "missionReward": 0,
+  "mechShopList": [],
+  "vehicleShopList": [],
+  "equipmentShopList": [],
+  "pilotShopList": [],
+  "nextMissionsList": [],
+  "missionIconLocation": {
+    "x": 0.0,
+    "y": 0.0
+  }
+}
