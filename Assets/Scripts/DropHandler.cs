@@ -10,14 +10,14 @@ public class DropHandler : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("dropped");
-        Debug.Log(UnitDisplayPanel.draggedObject);
+        Debug.Log(UnitDisplayPanelController.draggedUnit);
         RectTransform invPanel = transform as RectTransform;
 
         if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
         {
             Debug.Log("Out of drop");
-            UnitDisplayPanel.draggedObject.transform.position = dropPosition;
-            UnitDisplayPanel.draggedObject.transform.SetParent(this.transform);
+            UnitDisplayPanelController.draggedUnit.transform.position = dropPosition;
+            UnitDisplayPanelController.draggedUnit.transform.SetParent(this.transform);
         }
     }
 

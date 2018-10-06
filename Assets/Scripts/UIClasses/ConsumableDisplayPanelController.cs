@@ -5,30 +5,31 @@ using UnityEngine.UI;
 using System.IO;
 using UnityEngine.EventSystems;
 
-public class UnitDisplayPanel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class ConsumableDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
 
-    public int unitCost;
+    public int consumableCost;
     public int unitTonnage;
-    public string unitName;
+    public string consumableName;
     public string iconFileName;
     public Sprite iconSprite;
     public StoreController parentPanel;
-    public UnitClass thisPanelUnit;
+    public ConsumableClass thisPanelConsumable;
 
+    public bool notDeployment;
     public Text nameObject;
     public Text costObject;
     public Text tonnageObject;
     public Image iconObject;
 
-    public static GameObject draggedObject;
+    public static GameObject draggedConsumable;
     public GameObject canvasTopLayer;
     Vector3 returnPosition;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = false;
-        draggedObject = this.gameObject;
+        draggedConsumable = this.gameObject;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -44,10 +45,13 @@ public class UnitDisplayPanel : MonoBehaviour, IDragHandler, IBeginDragHandler, 
     }
 
     void Start () {
-        gameObject.name = unitName;
-        nameObject.text = unitName;
-        costObject.text = unitCost.ToString();
-        tonnageObject.text = unitTonnage.ToString();
+        gameObject.name = consumableName;
+        nameObject.text = consumableName;
+        if (notDeployment == true)
+        {
+            costObject.text = consumableName.ToString();
+            tonnageObject.text = unitTonnage.ToString();
+        }
         iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Mechs/" + iconFileName);
         returnPosition = transform.localPosition;
 

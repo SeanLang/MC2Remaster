@@ -1,8 +1,9 @@
 {
-  "Name": "Bob Bobson",
-  "Level": 1,
-  "Health": 3,
-  "upkeepCost": 12000,
-  "purchaseCost": 45000,
-  "XP": 100
+  "pilotName": "",
+  "iconFileName": "",
+  "rank": 0,
+  "health": 0,
+  "upkeepCost": 0,
+  "purchaseCost": 0,
+  "XP": 0
 }

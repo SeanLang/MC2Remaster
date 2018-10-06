@@ -48,8 +48,8 @@ public class MissionSelectionController : MonoBehaviour {
     public void SetPurchaseLists()
     {
         GameController.controller.buyableMechList = GameController.controller.activeMission.mechShopList;
-        GameController.controller.buyableTankList = GameController.controller.activeMission.tankShopList;
-        GameController.controller.buyableVTOLList = GameController.controller.activeMission.VTOLShopList;
-        GameController.controller.buyableInfantryList = GameController.controller.activeMission.InfantryShopList;
+        GameController.controller.buyableVehicleList = GameController.controller.activeMission.vehicleShopList;
+        GameController.controller.buyablePilotList = GameController.controller.activeMission.pilotShopList;
+        GameController.controller.buyableConsumableList = GameController.controller.activeMission.consumableShopList;
     }
 }
