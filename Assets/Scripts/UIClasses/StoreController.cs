@@ -264,7 +264,7 @@ public class StoreController : MonoBehaviour, IDropHandler
         if (isInventory == true)
         {
             GameController.controller.ownedMechList = new List<string>();
-            GameController.controller.ownedTankList = new List<string>();
+            GameController.controller.ownedVehicleList = new List<string>();
             GameController.controller.ownedVTOLList = new List<string>();
             GameController.controller.ownedInfantryList = new List<string>();
             foreach (UnitClass a in mechs)
@@ -273,15 +273,15 @@ public class StoreController : MonoBehaviour, IDropHandler
             }
             foreach (UnitClass a in vehicles)
             {
-                GameController.controller.ownedTankList.Add(a.unitName);
+                GameController.controller.ownedVehicleList.Add(a.unitName);
             }
-            foreach (UnitClass a in VTOLs)
+            foreach (PilotClass a in pilots)
             {
-                GameController.controller.ownedVTOLList.Add(a.unitName);
+                GameController.controller.ownedPilotList.Add(a.pilotName);
             }
-            foreach (UnitClass a in infantry)
+            foreach (ConsumableClass a in consumables)
             {
-                GameController.controller.ownedInfantryList.Add(a.unitName);
+                GameController.controller.ownedConsumableList.Add(a.consumableName);
             }
         }
         if (isDeployment == true)
@@ -331,30 +331,30 @@ public class StoreController : MonoBehaviour, IDropHandler
             {
                 consumables.Add(JsonUtility.FromJson<ConsumableClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/ConsumableData/" + a + ".json")));
             }
+        }
 
-            if (isInventory == true)
+        if (isInventory == true)
+        {
+            mechs = new List<UnitClass>();
+            pilots = new List<PilotClass>();
+            vehicles = new List<UnitClass>();
+            infantry = new List<UnitClass>();
+            VTOLs = new List<UnitClass>();
+            foreach (string a in GameController.controller.ownedMechList)
             {
-                mechs = new List<UnitClass>();
-                pilots = new List<PilotClass>();
-                vehicles = new List<UnitClass>();
-                infantry = new List<UnitClass>();
-                VTOLs = new List<UnitClass>();
-                foreach (string a in GameController.controller.buyableMechList)
-                {
-                    mechs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
-                }
-                foreach (string a in GameController.controller.buyablePilotList)
-                {
-                    pilots.Add(JsonUtility.FromJson<PilotClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/PilotData/" + a + ".json")));
-                }
-                foreach (string a in GameController.controller.buyableVehicleList)
-                {
-                    vehicles.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/VehicleData/" + a + ".json")));
-                }
-                foreach (string a in GameController.controller.buyableConsumableList)
-                {
-                    consumables.Add(JsonUtility.FromJson<ConsumableClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/ConsumableData/" + a + ".json")));
-                }
+                mechs.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/MechData/" + a + ".json")));
+            }
+            foreach (string a in GameController.controller.ownedPilotList)
+            {
+                pilots.Add(JsonUtility.FromJson<PilotClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/PilotData/" + a + ".json")));
+            }
+            foreach (string a in GameController.controller.ownedVehicleList)
+            {
+                vehicles.Add(JsonUtility.FromJson<UnitClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/VehicleData/" + a + ".json")));
+            }
+            foreach (string a in GameController.controller.ownedConsumableList)
+            {
+                consumables.Add(JsonUtility.FromJson<ConsumableClass>(File.ReadAllText(Application.streamingAssetsPath + "/JSONs/ConsumableData/" + a + ".json")));
             }
         }
         SetWindow(0);

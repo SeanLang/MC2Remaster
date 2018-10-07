@@ -7412,6 +7412,7 @@ GameObject:
   - component: {fileID: 535286359}
   - component: {fileID: 535286358}
   - component: {fileID: 535286357}
+  - component: {fileID: 535286360}
   m_Layer: 5
   m_Name: Panel_Vehicle
   m_TagString: Untagged
@@ -7473,6 +7474,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &535286360
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535286356}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &537976126
 GameObject:
   m_ObjectHideFlags: 0
@@ -9513,7 +9525,8 @@ MonoBehaviour:
   deploymentList: []
   pilotDeploymentList: []
   activeMissionList: []
-  ownedTankList: []
+  ownedVehicleList: []
+  ownedConsumableList: []
   ownedMechList: []
   ownedInfantryList: []
   ownedVTOLList: []
@@ -11374,7 +11387,7 @@ RectTransform:
   m_Father: {fileID: 1092276116}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.00000017881393, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -12008,7 +12021,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.18039216, g: 0.18039216, b: 0.18039216, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -13460,6 +13473,7 @@ GameObject:
   - component: {fileID: 1109578958}
   - component: {fileID: 1109578957}
   - component: {fileID: 1109578956}
+  - component: {fileID: 1109578959}
   m_Layer: 5
   m_Name: Panel_Personel
   m_TagString: Untagged
@@ -13522,6 +13536,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00048828125, y: -0.00048828125}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1109578959
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1109578955}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1113010306
 GameObject:
   m_ObjectHideFlags: 0
@@ -14085,17 +14110,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1591753621}
-        m_MethodName: PilotCanDrop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1131251660}
         m_MethodName: set_interactable
         m_Mode: 6
@@ -14125,6 +14139,28 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1960786876}
+        m_MethodName: SetWindow
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1591753621}
+        m_MethodName: SetWindow
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -18942,9 +18978,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1960786876}
+        m_MethodName: SetWindow
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1591753621}
-        m_MethodName: PilotCanNotDrop
-        m_Mode: 1
+        m_MethodName: SetWindow
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -23378,13 +23425,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1591753621}
-        m_MethodName: PilotCanNotDrop
-        m_Mode: 1
+      - m_Target: {fileID: 1960786876}
+        m_MethodName: SetWindow
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1591753621}
+        m_MethodName: SetWindow
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -23857,7 +23915,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 857273666}
   m_HandleRect: {fileID: 857273665}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -25470,7 +25528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 410}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1960786876
@@ -25493,8 +25551,9 @@ MonoBehaviour:
   otherPanel: {fileID: 1591753619}
   selectedIcon: {fileID: 0}
   unitPanel: {fileID: 1302064182862802, guid: ddc9bb99d091d7f46ad363bb93276ded, type: 2}
-  pilotPanel: {fileID: 0}
-  consumablePanel: {fileID: 0}
+  pilotPanel: {fileID: 1511207152029278, guid: 73263b0b0a8b37d4582f741fe361455b, type: 2}
+  consumablePanel: {fileID: 1106371793880554, guid: c11ca0b3ad3a71042b97dc1f84d7a3c9,
+    type: 2}
   deploymentPanel: {fileID: 0}
   canvasTopLayer: {fileID: 1295293733}
   isStoreScreen: 0
@@ -25762,6 +25821,7 @@ GameObject:
   - component: {fileID: 1976071292}
   - component: {fileID: 1976071294}
   - component: {fileID: 1976071293}
+  - component: {fileID: 1976071295}
   m_Layer: 5
   m_Name: Panel_Mech
   m_TagString: Untagged
@@ -25824,6 +25884,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1976071291}
   m_CullTransparentMesh: 0
+--- !u!225 &1976071295
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1976071291}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1982553398
 GameObject:
   m_ObjectHideFlags: 0

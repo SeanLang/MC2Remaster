@@ -36,7 +36,8 @@ public class GameController : MonoBehaviour {
     public List<string> deploymentList = new List<string>();
     public List<string> pilotDeploymentList = new List<string>();
     public List<string> activeMissionList = new List<string>();
-    public List<string> ownedTankList = new List<string>();
+    public List<string> ownedVehicleList = new List<string>();
+    public List<string> ownedConsumableList = new List<string>();
     public List<string> ownedMechList = new List<string>();
     public List<string> ownedInfantryList = new List<string>();
     public List<string> ownedVTOLList = new List<string>();
@@ -81,7 +82,7 @@ public class GameController : MonoBehaviour {
         saveData.buyablePilotList = buyablePilotList;
         saveData.buyabelWeaponList = buyabelWeaponList;
         saveData.MechList = ownedMechList;
-        saveData.TankList = ownedTankList;
+        saveData.TankList = ownedVehicleList;
         saveData.InfantryList = ownedInfantryList;
         saveData.VTOLList = ownedVTOLList;
         saveData.pilotList = ownedPilotList;
@@ -123,7 +124,7 @@ public class GameController : MonoBehaviour {
             string targetFileName = Application.streamingAssetsPath + "/JSONs/VehicleData/" + file.Name;
             fileList.Add(Path.GetFileNameWithoutExtension(targetFileName));
         }
-        foreach (string a in ownedTankList)
+        foreach (string a in ownedVehicleList)
         {
             if (fileList.Contains(a))
             {
