@@ -1,0 +1,13 @@
+{
+  "unitName": "Schreck",
+  "iconFileName": "Schreck",
+  "equipmentName": [],
+  "armour": 4,
+  "maxArmour": 4,
+  "upkeepCost": 30000,
+  "speed": 15,
+  "weight": 0,
+  "sensorRange": 13,
+  "visionRangs": 12,
+  "purchaseCost": 150000
+}

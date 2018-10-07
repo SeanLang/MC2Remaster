@@ -52,7 +52,7 @@ public class PilotDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDr
             costObject.text = unitCost.ToString();
             rankObject.text = unitRank.ToString();
         }
-        iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Mechs/" + iconFileName);
+        iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Pilots/" + iconFileName);
         returnPosition = transform.localPosition;
 
     }

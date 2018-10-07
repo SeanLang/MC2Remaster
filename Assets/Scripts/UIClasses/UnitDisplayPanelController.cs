@@ -52,7 +52,7 @@ public class UnitDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDra
             costObject.text = unitCost.ToString();
             tonnageObject.text = unitTonnage.ToString();
         }
-        iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Mechs/" + iconFileName);
+        iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Units/" + iconFileName);
         returnPosition = transform.localPosition;
 
     }

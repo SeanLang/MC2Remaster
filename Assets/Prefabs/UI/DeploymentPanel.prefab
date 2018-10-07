@@ -193,11 +193,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495956622596562}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1997c6959d11edc4aadbbb57bc76ab95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pilotNameObject: {fileID: 114378207741440866}
+  pilotImageObject: {fileID: 114053779331607150}
 --- !u!114 &114378207741440866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -342,6 +344,7 @@ MonoBehaviour:
     visionRange: 0
     upkeepCost: 0
     purchaseCost: 0
+  notDeployment: 0
   nameObject: {fileID: 114071728354750672}
   costObject: {fileID: 0}
   tonnageObject: {fileID: 0}

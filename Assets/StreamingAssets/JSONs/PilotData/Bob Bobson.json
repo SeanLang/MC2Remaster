@@ -1,5 +1,6 @@
 {
   "pilotName": "Bob Bobson",
+  "iconFileName": "Bob Bobson",
   "rank": 1,
   "health": 3,
   "upkeepCost": 12000,
