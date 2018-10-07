@@ -52,7 +52,7 @@ public class ConsumableDisplayPanelController : MonoBehaviour, IDragHandler, IBe
             costObject.text = consumableName.ToString();
             tonnageObject.text = unitTonnage.ToString();
         }
-        iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Mechs/" + iconFileName);
+        iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Consumeables/" + iconFileName);
         returnPosition = transform.localPosition;
 
     }
