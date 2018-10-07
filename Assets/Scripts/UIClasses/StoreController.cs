@@ -45,6 +45,14 @@ public class StoreController : MonoBehaviour, IDropHandler
     UnitDisplayPanelController activeUnit;
     StoreController storeScript;
 
+    public void SetPilotsDroppable()
+    {
+        foreach (PilotDropController a in GetComponentsInChildren<PilotDropController>())
+        {
+            a.enabled = true;
+        }
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
         switch (currentWindowID)
@@ -129,7 +137,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                         if (!vehicles.Contains(scriptOfDraggedUnit.thisPanelUnit))
                         {
                             vehicles.Add(scriptOfDraggedUnit.thisPanelUnit);
-                            otherPanel.GetComponent<StoreController>().mechs.Remove(scriptOfDraggedUnit.thisPanelUnit);
+                            otherPanel.GetComponent<StoreController>().vehicles.Remove(scriptOfDraggedUnit.thisPanelUnit);
                             otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
                             Destroy(dragged);
                             SetWindow(currentWindowID);
@@ -265,8 +273,8 @@ public class StoreController : MonoBehaviour, IDropHandler
         {
             GameController.controller.ownedMechList = new List<string>();
             GameController.controller.ownedVehicleList = new List<string>();
-            GameController.controller.ownedVTOLList = new List<string>();
-            GameController.controller.ownedInfantryList = new List<string>();
+            GameController.controller.ownedPilotList = new List<string>();
+            GameController.controller.ownedConsumableList = new List<string>();
             foreach (UnitClass a in mechs)
             {
                 GameController.controller.ownedMechList.Add(a.unitName);
@@ -286,22 +294,23 @@ public class StoreController : MonoBehaviour, IDropHandler
         }
         if (isDeployment == true)
         {
-            GameController.controller.deploymentList = new List<string>();
+            GameController.controller.unitDeploymentList = new List<string>();
             foreach(UnitClass a in mechs)
             {
-                GameController.controller.deploymentList.Add(a.unitName);
+                GameController.controller.unitDeploymentList.Add(a.unitName);
             }
             foreach (UnitClass a in vehicles)
             {
-                GameController.controller.deploymentList.Add(a.unitName);
+                GameController.controller.unitDeploymentList.Add(a.unitName);
             }
-            foreach (UnitClass a in VTOLs)
+            pilots = new List<PilotClass>();
+            foreach (PilotDropController a in GetComponentsInChildren<PilotDropController>())
             {
-                GameController.controller.deploymentList.Add(a.unitName);
+                a.CreateDeploymentPilotList();
             }
-            foreach (UnitClass a in infantry)
+            foreach (PilotClass a in pilots)
             {
-                GameController.controller.deploymentList.Add(a.unitName);
+                GameController.controller.pilotDeploymentList.Add(a.pilotName);
             }
         }
     }
@@ -364,11 +373,13 @@ public class StoreController : MonoBehaviour, IDropHandler
     {
         int count;
         currentWindowID = windowID;
-        switch (windowID)
+        if (!isDeployment)
         {
-            #region Mech List
-            case 0:
-                foreach (GameObject c in thisDisplayList)
+            switch (windowID)
+            {
+                #region Mech List
+                case 0:
+                    foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
@@ -404,11 +415,11 @@ public class StoreController : MonoBehaviour, IDropHandler
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
                 }
                 break;
-            #endregion
+                #endregion
 
-            #region Vehicle List
-            case 1:
-                foreach (GameObject c in thisDisplayList)
+                #region Vehicle List
+                case 1:
+                    foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
@@ -444,11 +455,11 @@ public class StoreController : MonoBehaviour, IDropHandler
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
                 }
                 break;
-            #endregion
+                #endregion
 
-            #region Pilot List
-            case 2:
-                foreach (GameObject c in thisDisplayList)
+                #region Pilot List
+                case 2:
+                    foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
@@ -484,11 +495,11 @@ public class StoreController : MonoBehaviour, IDropHandler
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
                 }
                 break;
-            #endregion
+                #endregion
 
-            #region Consumable List
-            case 3:
-                foreach (GameObject c in thisDisplayList)
+                #region Consumable List
+                case 3:
+                    foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
@@ -519,11 +530,11 @@ public class StoreController : MonoBehaviour, IDropHandler
                     this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
                 }
                 break;
-            #endregion
+                #endregion
 
-            #region case4
-            case 4:
-                foreach (GameObject c in thisDisplayList)
+                #region case4
+                case 4:
+                    foreach (GameObject c in thisDisplayList)
                 {
                     Destroy(c);
                 }
@@ -548,6 +559,79 @@ public class StoreController : MonoBehaviour, IDropHandler
                 }
                 break;
                 #endregion
+            }
+        }
+        else
+        {
+            #region Deployment Mechs
+            foreach (GameObject c in thisDisplayList)
+            {
+                Destroy(c);
+            }
+            thisDisplayList = new List<GameObject>();
+            count = 0;
+            foreach (UnitClass b in mechs)
+            {
+                count++;
+                if (isDeployment == false)
+                {
+                    currentInstantiate = Instantiate(unitPanel, transform, false);
+                }
+                else
+                {
+                    currentInstantiate = Instantiate(deploymentPanel, transform, false);
+                }
+                UnitDisplayPanelController currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanelController>();
+                currentPanelClass.canvasTopLayer = canvasTopLayer;
+                currentPanelClass.thisPanelUnit = b;
+                currentPanelClass.unitName = b.unitName;
+                currentPanelClass.unitCost = b.purchaseCost;
+                currentPanelClass.unitTonnage = b.weight;
+                currentPanelClass.iconFileName = b.iconFileName;
+                currentPanelClass.parentPanel = this;
+                thisDisplayList.Add(currentInstantiate);
+            }
+            if (count > maxPanelsOnScreen)
+            {
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (count * 100) + 10);
+            }
+            else
+            {
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
+            }
+            #endregion
+
+            #region Deployment Vehicles
+            foreach (UnitClass b in vehicles)
+            {
+                count++;
+                if (isDeployment == false)
+                {
+                    currentInstantiate = Instantiate(unitPanel, transform, false);
+                }
+                else
+                {
+                    currentInstantiate = Instantiate(deploymentPanel, transform, false);
+                }
+                UnitDisplayPanelController currentPanelClass = currentInstantiate.GetComponent<UnitDisplayPanelController>();
+                currentPanelClass.canvasTopLayer = canvasTopLayer;
+                currentPanelClass.thisPanelUnit = b;
+                currentPanelClass.unitName = b.unitName;
+                currentPanelClass.unitCost = b.purchaseCost;
+                currentPanelClass.unitTonnage = b.weight;
+                currentPanelClass.iconFileName = b.iconFileName;
+                currentPanelClass.parentPanel = this;
+                thisDisplayList.Add(currentInstantiate);
+            }
+            if (count > maxPanelsOnScreen)
+            {
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (count * 100) + 10);
+            }
+            else
+            {
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (maxPanelsOnScreen * 100) + 10);
+            }
+            #endregion
         }
     }
 

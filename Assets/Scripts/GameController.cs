@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour {
     public List<string> buyabelWeaponList = new List<string>();
     public List<string> buyableConsumableList = new List<string>();
     public List<string> campaignList = new List<string>();
-    public List<string> deploymentList = new List<string>();
+    public List<string> unitDeploymentList = new List<string>();
     public List<string> pilotDeploymentList = new List<string>();
     public List<string> activeMissionList = new List<string>();
     public List<string> ownedVehicleList = new List<string>();
