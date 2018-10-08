@@ -86,7 +86,6 @@ public class StoreController : MonoBehaviour, IDropHandler
                 }
                 else
                 {
-
                     dragged = UnitDisplayPanelController.draggedUnit;
                     scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
                     if (!mechs.Contains(scriptOfDraggedUnit.thisPanelUnit))
@@ -244,7 +243,7 @@ public class StoreController : MonoBehaviour, IDropHandler
         SetWindow(currentWindowID);
     }
 
-    public void AssignLists()
+    public void AssignLists(int condition)
     {
         if (isStore == true)
         {
@@ -303,20 +302,37 @@ public class StoreController : MonoBehaviour, IDropHandler
             {
                 GameController.controller.unitDeploymentList.Add(a.unitName);
             }
-            pilots = new List<PilotClass>();
-            foreach (PilotDropController a in GetComponentsInChildren<PilotDropController>())
+            if (condition == 1)
             {
-                a.CreateDeploymentPilotList();
+                pilots = new List<PilotClass>();
+                foreach (PilotDropController a in GetComponentsInChildren<PilotDropController>())
+                {
+                    a.CreateDeploymentPilotList();
+                }
             }
             foreach (PilotClass a in pilots)
             {
                 GameController.controller.pilotDeploymentList.Add(a.pilotName);
             }
         }
+        mechs = new List<UnitClass>();
+        vehicles = new List<UnitClass>();
+        pilots = new List<PilotClass>();
+        consumables = new List<ConsumableClass>();
+        SetWindow(0);
     }
 
     void OnEnable()
     {
+        //if (isDeployment)
+        //{
+        //    GameController.controller.pilotDeploymentList = new List<string>();
+        //    GameController.controller.unitDeploymentList = new List<string>();
+        //    mechs = new List<UnitClass>();
+        //    vehicles = new List<UnitClass>();
+        //    pilots = new List<PilotClass>();
+        //}
+
         if (isStore == true)
         {
             mechs = new List<UnitClass>();
