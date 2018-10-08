@@ -81,11 +81,11 @@
     <Compile Include="Assets\Scripts\MechLabController.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\CampaignClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\CampaignListClass.cs" />
+    <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\ConsumableClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\DropShipClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\MissionClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\PilotClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\UnitClass.cs" />
-    <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\WeaponClass.cs" />
     <Compile Include="Assets\Scripts\Non-Monobehaviour Classes\WeaponIconClass.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerMotor.cs" />
@@ -94,10 +94,13 @@
     <Compile Include="Assets\Scripts\UIClasses\BriefingController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\CampaignButtonController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\CampaignListController.cs" />
+    <Compile Include="Assets\Scripts\UIClasses\ConsumableDisplayPanelController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\MissionButtonController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\MissionSelectionController.cs" />
+    <Compile Include="Assets\Scripts\UIClasses\PilotDisplayPanelController.cs" />
+    <Compile Include="Assets\Scripts\UIClasses\PilotDropController.cs" />
     <Compile Include="Assets\Scripts\UIClasses\StoreController.cs" />
-    <Compile Include="Assets\Scripts\UIClasses\UnitDisplayPanel.cs" />
+    <Compile Include="Assets\Scripts\UIClasses\UnitDisplayPanelController.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="Unity.VectorGraphics">
       <HintPath>P:/Documents/GitHub/MC2Remaster/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>
