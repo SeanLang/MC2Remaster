@@ -26,6 +26,7 @@ public class PilotDropController : MonoBehaviour, IDropHandler
 
     public void CreateDeploymentPilotList()
     {
+        Debug.Log("pilot deployment list");
         GetComponentInParent<StoreController>().pilots.Add(assignedPilot);
     }
 	void Start () {
