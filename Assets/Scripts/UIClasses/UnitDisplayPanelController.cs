@@ -40,7 +40,6 @@ public class UnitDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 

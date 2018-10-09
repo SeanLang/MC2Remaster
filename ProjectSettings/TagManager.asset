@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - InventorySlot
-  - NextButton
+  - Deployment
+  - NotDeployment
   layers:
   - Default
   - TransparentFX
