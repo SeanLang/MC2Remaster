@@ -55,15 +55,12 @@ public class StoreController : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        switch (currentWindowID)
+        if (eventData.pointerDrag.tag == "Deployment")
         {
-            #region Mechs
-            case 0:
-             invPanel = transform as RectTransform;
-            if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
+            switch (currentWindowID)
             {
-                if (isDeployment == false)
-                {
+                #region Mechs
+                case 0:
                     dragged = UnitDisplayPanelController.draggedUnit;
                     scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
                     dragged.transform.position = dropPosition;
@@ -83,158 +80,96 @@ public class StoreController : MonoBehaviour, IDropHandler
                     {
                         GameController.controller.money = GameController.controller.money - scriptOfDraggedUnit.unitCost;
                     }
-                }
-                else
-                {
+                    break;
+                #endregion
+
+                #region Vehicles
+                case 1:
                     dragged = UnitDisplayPanelController.draggedUnit;
                     scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
-                    if (!mechs.Contains(scriptOfDraggedUnit.thisPanelUnit))
+                    dragged.transform.position = dropPosition;
+                    dragged.transform.SetParent(this.transform);
+                    if (!vehicles.Contains(scriptOfDraggedUnit.thisPanelUnit))
                     {
-                        mechs.Add(scriptOfDraggedUnit.thisPanelUnit);
-                        otherPanel.GetComponent<StoreController>().mechs.Remove(scriptOfDraggedUnit.thisPanelUnit);
+                        vehicles.Add(scriptOfDraggedUnit.thisPanelUnit);
+                        otherPanel.GetComponent<StoreController>().vehicles.Remove(scriptOfDraggedUnit.thisPanelUnit);
                         otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-                        Destroy(dragged);
                         SetWindow(currentWindowID);
                     }
-                }
-            }
-            break;
-            #endregion
-
-            #region Vehicles
-            case 1:
-                 invPanel = transform as RectTransform;
-                if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
-                {
-                    if (isDeployment == false)
+                    if (isStore == true)
                     {
-                        dragged = UnitDisplayPanelController.draggedUnit;
-                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
-                        dragged.transform.position = dropPosition;
-                        dragged.transform.SetParent(this.transform);
-                        if (!vehicles.Contains(scriptOfDraggedUnit.thisPanelUnit))
-                        {
-                            vehicles.Add(scriptOfDraggedUnit.thisPanelUnit);
-                            otherPanel.GetComponent<StoreController>().vehicles.Remove(scriptOfDraggedUnit.thisPanelUnit);
-                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-                            SetWindow(currentWindowID);
-                        }
-                        if (isStore == true)
-                        {
-                            GameController.controller.money = GameController.controller.money + scriptOfDraggedUnit.unitCost;
-                        }
-                        else if (isStoreScreen == true && isInventory == true)
-                        {
-                            GameController.controller.money = GameController.controller.money - scriptOfDraggedUnit.unitCost;
-                        }
+                        GameController.controller.money = GameController.controller.money + scriptOfDraggedUnit.unitCost;
                     }
-                    else
+                    else if (isStoreScreen == true && isInventory == true)
                     {
-
-                        dragged = UnitDisplayPanelController.draggedUnit;
-                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
-                        if (!vehicles.Contains(scriptOfDraggedUnit.thisPanelUnit))
-                        {
-                            vehicles.Add(scriptOfDraggedUnit.thisPanelUnit);
-                            otherPanel.GetComponent<StoreController>().vehicles.Remove(scriptOfDraggedUnit.thisPanelUnit);
-                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-                            Destroy(dragged);
-                            SetWindow(currentWindowID);
-                        }
+                        GameController.controller.money = GameController.controller.money - scriptOfDraggedUnit.unitCost;
                     }
-                }
-                break;
-            #endregion
-
-            #region Pilots
-            case 2:
-                invPanel = transform as RectTransform;
-                if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
-                {
-                    if (isDeployment == false)
-                    {
-                        dragged = PilotDisplayPanelController.draggedPilot;
-                        scriptOfDraggedPilot = dragged.GetComponent<PilotDisplayPanelController>();
-                        dragged.transform.position = dropPosition;
-                        dragged.transform.SetParent(this.transform);
-                        if (!pilots.Contains(scriptOfDraggedPilot.thisPanelPilot))
-                        {
-                            pilots.Add(scriptOfDraggedPilot.thisPanelPilot);
-                            otherPanel.GetComponent<StoreController>().pilots.Remove(scriptOfDraggedPilot.thisPanelPilot);
-                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-                            SetWindow(currentWindowID);
-                        }
-                        if (isStore == true)
-                        {
-                            GameController.controller.money = GameController.controller.money + scriptOfDraggedPilot.unitCost;
-                        }
-                        else if (isStoreScreen == true && isInventory == true)
-                        {
-                            GameController.controller.money = GameController.controller.money - scriptOfDraggedPilot.unitCost;
-                        }
-                    }
-                    else
-                    {
-
-                        dragged = UnitDisplayPanelController.draggedUnit;
-                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
-                        if (!pilots.Contains(scriptOfDraggedPilot.thisPanelPilot))
-                        {
-                            pilots.Add(scriptOfDraggedPilot.thisPanelPilot);
-                            otherPanel.GetComponent<StoreController>().pilots.Remove(scriptOfDraggedPilot.thisPanelPilot);
-                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-                            Destroy(dragged);
-                            SetWindow(currentWindowID);
-                        }
-                    }
-                }
-                break;
-            #endregion
-
-            #region Consumables
-            case 3:
-                invPanel = transform as RectTransform;
-                if (RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition, null))
-                {
-                    if (isDeployment == false)
-                    {
-                        dragged = ConsumableDisplayPanelController.draggedConsumable;
-                        scriptOfDraggedConsumable = dragged.GetComponent<ConsumableDisplayPanelController>();
-                        dragged.transform.position = dropPosition;
-                        dragged.transform.SetParent(this.transform);
-                        if (!consumables.Contains(scriptOfDraggedConsumable.thisPanelConsumable))
-                        {
-                            consumables.Add(scriptOfDraggedConsumable.thisPanelConsumable);
-                            otherPanel.GetComponent<StoreController>().consumables.Remove(scriptOfDraggedConsumable.thisPanelConsumable);
-                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-                            SetWindow(currentWindowID);
-                        }
-                        if (isStore == true)
-                        {
-                            GameController.controller.money = GameController.controller.money + scriptOfDraggedPilot.unitCost;
-                        }
-                        else if (isStoreScreen == true && isInventory == true)
-                        {
-                            GameController.controller.money = GameController.controller.money - scriptOfDraggedPilot.unitCost;
-                        }
-                    }
-                    else
-                    {
-
-                        dragged = UnitDisplayPanelController.draggedUnit;
-                        scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
-                        if (!consumables.Contains(scriptOfDraggedConsumable.thisPanelConsumable))
-                        {
-                            consumables.Add(scriptOfDraggedConsumable.thisPanelConsumable);
-                            otherPanel.GetComponent<StoreController>().consumables.Remove(scriptOfDraggedConsumable.thisPanelConsumable);
-                            otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
-                            Destroy(dragged);
-                            SetWindow(currentWindowID);
-                        }
-                    }
-                }
-                break;
+                    break;
                 #endregion
+
+                #region Pilots
+                case 2:
+                    dragged = PilotDisplayPanelController.draggedPilot;
+                    scriptOfDraggedPilot = dragged.GetComponent<PilotDisplayPanelController>();
+                    dragged.transform.position = dropPosition;
+                    dragged.transform.SetParent(this.transform);
+                    if (!pilots.Contains(scriptOfDraggedPilot.thisPanelPilot))
+                    {
+                        pilots.Add(scriptOfDraggedPilot.thisPanelPilot);
+                        otherPanel.GetComponent<StoreController>().pilots.Remove(scriptOfDraggedPilot.thisPanelPilot);
+                        otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                        SetWindow(currentWindowID);
+                    }
+                    if (isStore == true)
+                    {
+                        GameController.controller.money = GameController.controller.money + scriptOfDraggedPilot.unitCost;
+                    }
+                    else if (isStoreScreen == true && isInventory == true)
+                    {
+                        GameController.controller.money = GameController.controller.money - scriptOfDraggedPilot.unitCost;
+                    }
+                    break;
+                #endregion
+
+                #region Consumables
+                case 3:
+                    dragged = ConsumableDisplayPanelController.draggedConsumable;
+                    scriptOfDraggedConsumable = dragged.GetComponent<ConsumableDisplayPanelController>();
+                    dragged.transform.position = dropPosition;
+                    dragged.transform.SetParent(this.transform);
+                    if (!consumables.Contains(scriptOfDraggedConsumable.thisPanelConsumable))
+                    {
+                        consumables.Add(scriptOfDraggedConsumable.thisPanelConsumable);
+                        otherPanel.GetComponent<StoreController>().consumables.Remove(scriptOfDraggedConsumable.thisPanelConsumable);
+                        otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
+                        SetWindow(currentWindowID);
+                    }
+                    if (isStore == true)
+                    {
+                        GameController.controller.money = GameController.controller.money + scriptOfDraggedPilot.unitCost;
+                    }
+                    else if (isStoreScreen == true && isInventory == true)
+                    {
+                        GameController.controller.money = GameController.controller.money - scriptOfDraggedPilot.unitCost;
+                    }
+                    break;
+                    #endregion
+            }
+        }
+        else
+        {
+            if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit != null)
+            {
+                mechs.Add(eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit);
+                eventData.pointerDrag.GetComponent<DeploymentIconDragController>().previousSlot.assignedUnit = null;
+                Destroy(eventData.pointerDrag);
+            }
+            else if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisPilot != null)
+            {
+                pilots.Add(eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisPilot);
+                eventData.pointerDrag.GetComponent<DeploymentIconDragController>().previousSlot.assignedPilot = null;
+                Destroy(eventData.pointerDrag);
+            }
         }
     }
 

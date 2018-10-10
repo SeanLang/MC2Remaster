@@ -17,74 +17,87 @@ public class DeploymentSlotController : MonoBehaviour, IDropHandler
     GameObject draggedObject;
     GameObject instantiatedUnitIcon;
     GameObject instantiatedPilotIcon;
-    UnitClass draggedUnit;
-    PilotClass draggedPilot;
     public int screenState;
-    PilotClass assignedPilot;
-    UnitClass assignedUnit;
+    public PilotClass assignedPilot;
+    public UnitClass assignedUnit;
 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log(UnitDisplayPanelController.draggedUnit);
         Debug.Log(PilotDisplayPanelController.draggedPilot);
-        if (UnitDisplayPanelController.draggedUnit.tag == "NotDeployment" || PilotDisplayPanelController.draggedPilot.tag == "NotDeployment") {
-            if (screenState == 2)
-            {
-                draggedObject = PilotDisplayPanelController.draggedPilot;
-                draggedPilot = draggedObject.GetComponent<PilotDisplayPanelController>().thisPanelPilot;
-                instantiatedPilotIcon = Instantiate(pilotIconPanel, pilotIconSpawn);
-                instantiatedPilotIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcons/Pilots/" + draggedPilot.iconFileName);
-                instantiatedPilotIcon.GetComponent<DeploymentIconDragController>().canvasTopLayer = canvasTopLayer;
-                instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().previousSlot = this;
-                pilotNameObject.text = draggedPilot.pilotName;
-                otherPanel.pilots.Remove(draggedPilot);
-                PilotDisplayPanelController.draggedPilot = null;
-                Destroy(draggedObject);
-            }
-            else if (screenState == 1)
-            {
-                draggedObject = UnitDisplayPanelController.draggedUnit;
-                draggedUnit = draggedObject.GetComponent<UnitDisplayPanelController>().thisPanelUnit;
-                instantiatedUnitIcon = Instantiate(unitIconPanel, unitIconSpawn);
-                instantiatedUnitIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcons/Units/" + draggedUnit.iconFileName);
-                instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().canvasTopLayer = canvasTopLayer;
-                instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().previousSlot = this;
-                unitNameObject.text = draggedUnit.unitName;
-                otherPanel.vehicles.Remove(draggedUnit);
-                UnitDisplayPanelController.draggedUnit = null;
-                Destroy(draggedObject);
-            }
-            else if (screenState == 0)
-            {
-                draggedObject = UnitDisplayPanelController.draggedUnit;
-                draggedUnit = draggedObject.GetComponent<UnitDisplayPanelController>().thisPanelUnit;
-                instantiatedUnitIcon = Instantiate(unitIconPanel, unitIconSpawn);
-                instantiatedUnitIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcons/Units/" + draggedUnit.iconFileName);
-                instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().canvasTopLayer = canvasTopLayer;
-                instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().previousSlot = this;
-                unitNameObject.text = draggedUnit.unitName;
-                otherPanel.mechs.Remove(draggedUnit);
-                UnitDisplayPanelController.draggedUnit = null;
-                Destroy(draggedObject);
-            }
-        }
-        else if (UnitDisplayPanelController.draggedUnit.tag == "Deployment")
+
+        if (UnitDisplayPanelController.draggedUnit)
         {
-            draggedObject = UnitDisplayPanelController.draggedUnit;
-            DeploymentIconDragController draggedObjectScript = GetComponent<DeploymentIconDragController>();
-            draggedObjectScript.originPoint = this.transform;
-            draggedObjectScript.NewLocation();
-            draggedObjectScript.previousSlot = this;
-            UnitDisplayPanelController.draggedUnit = null;
-        }
-        else if (PilotDisplayPanelController.draggedPilot.tag == "Deployment")
-        {
-            draggedObject = PilotDisplayPanelController.draggedPilot;
-            DeploymentIconDragController draggedObjectScript = GetComponent<DeploymentIconDragController>();
-            draggedObjectScript.originPoint = this.transform;
-            draggedObjectScript.NewLocation();
-            draggedObjectScript.previousSlot = this;
-            PilotDisplayPanelController.draggedPilot = null;
+            if (eventData.pointerDrag.tag == "NotDeployment")
+            {
+                if (screenState == 2)
+                {
+                    draggedObject = eventData.pointerDrag;
+                    assignedPilot = draggedObject.GetComponent<PilotDisplayPanelController>().thisPanelPilot;
+                    instantiatedPilotIcon = Instantiate(pilotIconPanel, pilotIconSpawn);
+                    instantiatedPilotIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcons/Pilots/" + assignedPilot.iconFileName);
+                    instantiatedPilotIcon.GetComponent<DeploymentIconDragController>().canvasTopLayer = canvasTopLayer;
+                    instantiatedPilotIcon.GetComponent<DeploymentIconDragController>().previousSlot = this;
+                    instantiatedPilotIcon.GetComponent<DeploymentIconDragController>().thisPilot = assignedPilot;
+                    pilotNameObject.text = assignedPilot.pilotName;
+                    otherPanel.pilots.Remove(assignedPilot);
+                    PilotDisplayPanelController.draggedPilot = null;
+                    Destroy(draggedObject);
+                }
+                else if (screenState == 1)
+                {
+                    draggedObject = eventData.pointerDrag;
+                    assignedUnit = draggedObject.GetComponent<UnitDisplayPanelController>().thisPanelUnit;
+                    instantiatedUnitIcon = Instantiate(unitIconPanel, unitIconSpawn);
+                    instantiatedUnitIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcons/Units/" + assignedUnit.iconFileName);
+                    instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().canvasTopLayer = canvasTopLayer;
+                    instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().previousSlot = this;
+                    instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().thisUnit = assignedUnit;
+                    unitNameObject.text = assignedUnit.unitName;
+                    otherPanel.vehicles.Remove(assignedUnit);
+                    UnitDisplayPanelController.draggedUnit = null;
+                    Destroy(draggedObject);
+                }
+                else if (screenState == 0)
+                {
+                    draggedObject = eventData.pointerDrag;
+                    assignedUnit = draggedObject.GetComponent<UnitDisplayPanelController>().thisPanelUnit;
+                    instantiatedUnitIcon = Instantiate(unitIconPanel, unitIconSpawn);
+                    instantiatedUnitIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcons/Units/" + assignedUnit.iconFileName);
+                    instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().canvasTopLayer = canvasTopLayer;
+                    instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().previousSlot = this;
+                    instantiatedUnitIcon.GetComponent<DeploymentIconDragController>().thisUnit = assignedUnit;
+                    unitNameObject.text = assignedUnit.unitName;
+                    otherPanel.mechs.Remove(assignedUnit);
+                    UnitDisplayPanelController.draggedUnit = null;
+                    Destroy(draggedObject);
+                }
+            }
+            else if (eventData.pointerDrag.tag == "Deployment")
+            {
+                if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit != null)
+                {
+                    draggedObject = eventData.pointerDrag;
+                    DeploymentIconDragController draggedObjectScript = draggedObject.GetComponent<DeploymentIconDragController>();
+                    draggedObjectScript.originPoint = unitIconSpawn;
+                    assignedUnit = draggedObjectScript.thisUnit;
+                    draggedObjectScript.previousSlot.assignedUnit = null;
+                    draggedObjectScript.NewLocation();
+                    draggedObjectScript.previousSlot = this;
+                    UnitDisplayPanelController.draggedUnit = null;
+                }
+                if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisPilot != null)
+                {
+                    draggedObject = eventData.pointerDrag;
+                    DeploymentIconDragController draggedObjectScript = draggedObject.GetComponent<DeploymentIconDragController>();
+                    draggedObjectScript.originPoint = pilotIconSpawn;
+                    assignedPilot = draggedObjectScript.thisPilot;
+                    draggedObjectScript.previousSlot.assignedPilot = null;
+                    draggedObjectScript.NewLocation();
+                    draggedObjectScript.previousSlot = this;
+                    PilotDisplayPanelController.draggedPilot = null;
+                }
+            }
         }
     }
 

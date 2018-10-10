@@ -8,6 +8,8 @@ public class DeploymentIconDragController : MonoBehaviour, IDragHandler, IBeginD
 {
     public GameObject canvasTopLayer;
     public bool isUnit;
+    public UnitClass thisUnit;
+    public PilotClass thisPilot;
     public DeploymentSlotController previousSlot;
     public Transform originPoint;
 
