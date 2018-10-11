@@ -24,7 +24,7 @@ public class PilotDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDr
 
     public static GameObject draggedPilot;
     public GameObject canvasTopLayer;
-    Vector3 returnPosition;
+    public Transform returnPosition;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -40,8 +40,8 @@ public class PilotDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+        ReturnToOrigin();
     }
 
     void Start () {
@@ -53,7 +53,6 @@ public class PilotDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDr
             rankObject.text = unitRank.ToString();
         }
         iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Pilots/" + iconFileName);
-        returnPosition = transform.localPosition;
 
     }
 
@@ -62,7 +61,8 @@ public class PilotDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDr
         parentPanel.selectedIcon = gameObject;
     }
 
-    void Update () {
-		
-	}
+    public void ReturnToOrigin()
+    {
+        transform.SetParent(returnPosition);
+    }
 }
