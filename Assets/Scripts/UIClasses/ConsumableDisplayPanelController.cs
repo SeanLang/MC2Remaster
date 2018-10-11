@@ -24,7 +24,7 @@ public class ConsumableDisplayPanelController : MonoBehaviour, IDragHandler, IBe
 
     public static GameObject draggedConsumable;
     public GameObject canvasTopLayer;
-    Vector3 returnPosition;
+    public Transform returnPosition;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -42,6 +42,7 @@ public class ConsumableDisplayPanelController : MonoBehaviour, IDragHandler, IBe
     {
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+        ReturnToOrigin();
     }
 
     void Start () {
@@ -53,7 +54,6 @@ public class ConsumableDisplayPanelController : MonoBehaviour, IDragHandler, IBe
             tonnageObject.text = unitTonnage.ToString();
         }
         iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Consumeables/" + iconFileName);
-        returnPosition = transform.localPosition;
 
     }
 
@@ -62,7 +62,8 @@ public class ConsumableDisplayPanelController : MonoBehaviour, IDragHandler, IBe
         parentPanel.selectedIcon = gameObject;
     }
 
-    void Update () {
-		
-	}
+    public void ReturnToOrigin()
+    {
+        transform.SetParent(returnPosition);
+    }
 }

@@ -24,7 +24,7 @@ public class UnitDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDra
 
     public static GameObject draggedUnit;
     public GameObject canvasTopLayer;
-    Vector3 returnPosition;
+    public Transform returnPosition;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -41,6 +41,7 @@ public class UnitDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDra
     public void OnEndDrag(PointerEventData eventData)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+        ReturnToOrigin();
     }
 
     void Start () {
@@ -52,7 +53,6 @@ public class UnitDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDra
             tonnageObject.text = unitTonnage.ToString();
         }
         iconObject.sprite = Resources.Load<Sprite>("UnitIcons/Units/" + iconFileName);
-        returnPosition = transform.localPosition;
 
     }
 
@@ -61,7 +61,8 @@ public class UnitDisplayPanelController : MonoBehaviour, IDragHandler, IBeginDra
         parentPanel.selectedIcon = gameObject;
     }
 
-    void Update () {
-		
-	}
+    public void ReturnToOrigin()
+    {
+        transform.SetParent(returnPosition);
+    }
 }

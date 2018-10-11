@@ -17,6 +17,14 @@ public class DeploymentIconDragController : MonoBehaviour, IDragHandler, IBeginD
     {
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         originPoint = transform.parent;
+        if (isUnit == true)
+        {
+            thisPilot = null;
+        }
+        else
+        {
+            thisUnit = null;
+        }
         if (isUnit)
         {
             UnitDisplayPanelController.draggedUnit = this.gameObject;

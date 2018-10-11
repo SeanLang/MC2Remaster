@@ -55,7 +55,7 @@ public class StoreController : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.tag == "Deployment")
+        if (eventData.pointerDrag.tag == "NotDeployment")
         {
             switch (currentWindowID)
             {
@@ -64,11 +64,13 @@ public class StoreController : MonoBehaviour, IDropHandler
                     dragged = UnitDisplayPanelController.draggedUnit;
                     scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
                     dragged.transform.position = dropPosition;
-                    dragged.transform.SetParent(this.transform);
+                    dragged.GetComponent<UnitDisplayPanelController>().returnPosition = transform;
+                    dragged.GetComponent<UnitDisplayPanelController>().ReturnToOrigin();
                     if (!mechs.Contains(scriptOfDraggedUnit.thisPanelUnit))
                     {
                         mechs.Add(scriptOfDraggedUnit.thisPanelUnit);
                         otherPanel.GetComponent<StoreController>().mechs.Remove(scriptOfDraggedUnit.thisPanelUnit);
+                        otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
                         otherPanel.GetComponent<StoreController>().SetWindow(currentWindowID);
                         SetWindow(currentWindowID);
                     }
@@ -88,7 +90,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                     dragged = UnitDisplayPanelController.draggedUnit;
                     scriptOfDraggedUnit = dragged.GetComponent<UnitDisplayPanelController>();
                     dragged.transform.position = dropPosition;
-                    dragged.transform.SetParent(this.transform);
+                    dragged.GetComponent<UnitDisplayPanelController>().ReturnToOrigin();
                     if (!vehicles.Contains(scriptOfDraggedUnit.thisPanelUnit))
                     {
                         vehicles.Add(scriptOfDraggedUnit.thisPanelUnit);
@@ -112,7 +114,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                     dragged = PilotDisplayPanelController.draggedPilot;
                     scriptOfDraggedPilot = dragged.GetComponent<PilotDisplayPanelController>();
                     dragged.transform.position = dropPosition;
-                    dragged.transform.SetParent(this.transform);
+                    dragged.GetComponent<PilotDisplayPanelController>().ReturnToOrigin();
                     if (!pilots.Contains(scriptOfDraggedPilot.thisPanelPilot))
                     {
                         pilots.Add(scriptOfDraggedPilot.thisPanelPilot);
@@ -158,17 +160,20 @@ public class StoreController : MonoBehaviour, IDropHandler
         }
         else
         {
-            if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit != null)
-            {
-                mechs.Add(eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit);
-                eventData.pointerDrag.GetComponent<DeploymentIconDragController>().previousSlot.assignedUnit = null;
-                Destroy(eventData.pointerDrag);
-            }
-            else if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisPilot != null)
+            
+            if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisPilot != null)
             {
                 pilots.Add(eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisPilot);
                 eventData.pointerDrag.GetComponent<DeploymentIconDragController>().previousSlot.assignedPilot = null;
                 Destroy(eventData.pointerDrag);
+                SetWindow(currentWindowID);
+            }
+            else if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit != null)
+            {
+                mechs.Add(eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit);
+                eventData.pointerDrag.GetComponent<DeploymentIconDragController>().previousSlot.assignedUnit = null;
+                Destroy(eventData.pointerDrag);
+                SetWindow(currentWindowID);
             }
         }
     }
@@ -355,6 +360,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                     currentPanelClass.unitTonnage = b.weight;
                     currentPanelClass.iconFileName = b.iconFileName;
                     currentPanelClass.parentPanel = this;
+                    currentPanelClass.returnPosition = transform;
                     thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
@@ -395,6 +401,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                     currentPanelClass.unitTonnage = b.weight;
                     currentPanelClass.iconFileName = b.iconFileName;
                     currentPanelClass.parentPanel = this;
+                    currentPanelClass.returnPosition = transform;
                     thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
@@ -435,6 +442,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                     currentPilotPanelClass.unitRank = b.rank;
                     currentPilotPanelClass.iconFileName = b.iconFileName;
                     currentPilotPanelClass.parentPanel = this;
+                    currentPilotPanelClass.returnPosition = transform;
                     thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
@@ -470,6 +478,7 @@ public class StoreController : MonoBehaviour, IDropHandler
                     currentConsumablePanelClass.consumableCost = b.purchaseCost;
                     currentConsumablePanelClass.iconFileName = b.iconFileName;
                     currentConsumablePanelClass.parentPanel = this;
+                    currentConsumablePanelClass.returnPosition = transform;
                     thisDisplayList.Add(currentInstantiate);
                 }
                 if (count > maxPanelsOnScreen)
