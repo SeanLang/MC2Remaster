@@ -8,11 +8,15 @@ public class SelectHandler : MonoBehaviour {
     [SerializeField]
     private LayerMask clickableLayer;
 
+    private List<GameObject> selectedGameObjects;
+
     Camera cam;
 
     private void Start()
     {
         cam = Camera.main;
+
+        selectedGameObjects = new List<GameObject>();
     }
 
     void Update ()
@@ -27,7 +31,7 @@ public class SelectHandler : MonoBehaviour {
         {
             if (blockedByCanvasUI)
             {
-                Debug.Log("Click to " + colliderOver.name + " Blocked by Canvas UI!");
+                //Debug.Log("Click to " + colliderOver.name + " Blocked by Canvas UI!");
             }
             else
             {
@@ -38,7 +42,7 @@ public class SelectHandler : MonoBehaviour {
 
                 selHandle.isSelected = !selHandle.isSelected;
                 selHandle.Selected();
-                Debug.Log(selHandle.isSelected);
+                //Debug.Log(selHandle.isSelected);
             }
         }
     }

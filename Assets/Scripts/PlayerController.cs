@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit[] hits = Physics.RaycastAll(ray, cam.farClipPlane, movementMask);
+            RaycastHit[] hits = Physics.RaycastAll(ray, cam.farClipPlane, movementMask.value);
 
             System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
             {
                 if (blockedByCanvasUI)
                 {
-                    Debug.Log("Click to " + hit.collider.name + " Blocked by Canvas UI!");
+                    //Debug.Log("Click to " + hit.collider.name + " Blocked by Canvas UI!");
                 }
                 else
                 {
