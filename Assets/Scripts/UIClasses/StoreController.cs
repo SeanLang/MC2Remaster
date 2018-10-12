@@ -171,7 +171,7 @@ public class StoreController : MonoBehaviour, IDropHandler
             else if (eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit != null)
             {
                 mechs.Add(eventData.pointerDrag.GetComponent<DeploymentIconDragController>().thisUnit);
-                eventData.pointerDrag.GetComponent<DeploymentIconDragController>().previousSlot.assignedUnit = null;
+                eventData.pointerDrag.GetComponent<DeploymentIconDragController>().previousSlot.assignedVehicle = null;
                 Destroy(eventData.pointerDrag);
                 SetWindow(currentWindowID);
             }
